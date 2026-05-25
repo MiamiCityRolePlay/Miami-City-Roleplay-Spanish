@@ -7,7 +7,7 @@
     
     <meta name="theme-color" content="#ff007f">
     <meta property="og:title" content="Miami City Roleplay - MCRP" />
-    <meta property="og:description" content="Servidor serio con economía realista. ¡Únete a nuestras facciones oficiales MDPD, BSO, MDFR y FDOT!" />
+    <meta property="og:description" content="Servidor serio con economía realista en ERLC. ¡Únete a nuestras facciones oficiales MDPD, BSO, MDFR y FDOT!" />
     <meta property="og:image" content="https://cdn.discordapp.com/attachments/1497381219753525251/1507796252287565985/e38f7a6df8f6d4a428c8c65b426e8ec2.png?ex=6a133430&is=6a11e2b0&hm=e0ed5f618a0a39172de567c67546dd6307dfc08ea6680c73fcf3e37c60d8faba" />
     <meta property="og:url" content="https://discord.gg/dqVxF4jExX" />
     <meta property="og:type" content="website" />
@@ -43,8 +43,10 @@
             background: rgba(5, 4, 9, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 242, 254, 0.1);
-            position: relative;
-            z-index: 10;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
         }
 
         .logo img {
@@ -94,11 +96,12 @@
         /* HERO SECCIÓN */
         .hero-section {
             position: relative;
-            height: 550px;
+            height: 600px;
             background: linear-gradient(135deg, #0a061a 0%, #050409 100%);
             display: flex;
             align-items: center;
             padding: 0 6%;
+            padding-top: 80px;
             border-bottom: 1px solid rgba(255, 0, 127, 0.05);
         }
 
@@ -129,46 +132,6 @@
             margin-bottom: 35px;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn-main {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-decoration: none;
-            border-radius: 4px;
-            text-transform: uppercase;
-            color: #fff;
-            transition: 0.3s;
-        }
-
-        .btn-cyan {
-            background: #00f2fe;
-            color: #000;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .btn-cyan:hover {
-            box-shadow: 0 0 25px #00f2fe;
-            transform: translateY(-2px);
-        }
-
-        .btn-pink {
-            background: #ff007f;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
-        }
-
-        .btn-pink:hover {
-            box-shadow: 0 0 25px #ff007f;
-            transform: translateY(-2px);
-        }
-
         /* CONTADORES / STATS */
         .stats-container {
             display: grid;
@@ -176,6 +139,7 @@
             gap: 15px;
             padding: 0 6%;
             margin-top: -40px;
+            margin-bottom: 40px;
             position: relative;
             z-index: 5;
         }
@@ -209,12 +173,13 @@
             font-weight: 700;
         }
 
-        /* SECCIÓN DE FACCIONES */
-        .roles-section {
+        /* SECCIÓN DE TIENDA */
+        .shop-section {
             padding: 80px 6% 40px 6%;
+            background: linear-gradient(180deg, #050409 0%, #0b0914 100%);
         }
 
-        .roles-section h2 {
+        .shop-section h2 {
             font-size: 22px;
             text-transform: uppercase;
             font-weight: 900;
@@ -224,36 +189,78 @@
             padding-left: 12px;
         }
 
-        .roles-grid {
+        .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        .role-card {
-            background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            padding: 20px;
+        .shop-card {
+            background: rgba(16, 13, 29, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 35px 25px;
             text-align: center;
-            transition: 0.3s;
+            transition: 0.3s ease-in-out;
             position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px;
         }
 
-        .role-card::before {
+        .shop-card::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: transparent;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(180deg, transparent 60%, rgba(0, 242, 254, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
             transition: 0.3s;
         }
 
-        .role-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        .shop-card:hover {
+            transform: translateY(-8px);
+            background: rgba(22, 18, 41, 0.9);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
+        .shop-card.bronze:hover { border-color: #cd7f32; box-shadow: 0 0 25px rgba(205, 127, 50, 0.2); }
+        .shop-card.silver:hover { border-color: #c0c0c0; box-shadow: 0 0 25px rgba(192, 192, 192, 0.2); }
+        .shop-card.gold:hover { border-color: #ffd700; box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); }
+
+        .vip-stars { font-size: 14px; margin-bottom: 10px; }
+        .bronze .vip-stars { color: #cd7f32; }
+        .silver .vip-stars { color: #c0c0c0; }
+        .gold .vip-stars { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
+
+        .vip-icon { font-size: 45px; margin-bottom: 20px; color: #ffffff; }
+        .bronze .vip-icon { color: #cd7f32; }
+        .silver .vip-icon { color: #c0c0c0; }
+        .gold .vip-icon { color: #ffd700; }
+
+        .shop-card h3 { font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+        .vip-price { font-size: 18px; font-weight: 700; color: #00f2fe; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        
+        .btn-buy { width: 100%; padding: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; border-radius: 6px; border: none; color: #ffffff; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; margin-top: auto; }
+        .bronze .btn-buy { background: #cd7f32; box-shadow: 0 4px 12px rgba(205, 127, 50, 0.3); }
+        .silver .btn-buy { background: #7a7a7a; box-shadow: 0 4px 12px rgba(122, 122, 122, 0.3); }
+        .gold .btn-buy { background: #ff007f; box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3); }
+
+        .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+        /* SECCIÓN DE FACCIONES */
+        .roles-section { padding: 60px 6% 40px 6%; }
+        .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
+        .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
+        .role-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: transparent; transition: 0.3s; }
+        .role-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); }
+        
         .role-card.mdpd:hover { border-color: #0066ff; }
         .role-card.mdpd:hover::before { background: #0066ff; }
         .role-card.bso:hover { border-color: #d4af37; }
@@ -263,171 +270,37 @@
         .role-card.fdot:hover { border-color: #ff9900; }
         .role-card.fdot:hover::before { background: #ff9900; }
 
-        .role-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            margin: 0 auto 15px auto;
-            background: rgba(255, 255, 255, 0.03);
-        }
-
+        .role-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 15px auto; background: rgba(255, 255, 255, 0.03); }
         .role-card.mdpd .role-icon { color: #0066ff; background: rgba(0, 102, 255, 0.1); }
         .role-card.bso .role-icon { color: #d4af37; background: rgba(212, 175, 55, 0.1); }
         .role-card.mdfr .role-icon { color: #ff0033; background: rgba(255, 0, 51, 0.1); }
         .role-card.fdot .role-icon { color: #ff9900; background: rgba(255, 153, 0, 0.1); }
+        
+        .role-card h4 { font-size: 18px; font-weight: 900; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .role-card p { font-size: 12px; color: #a3a3c2; font-weight: 500; }
 
-        .role-card h4 {
-            font-size: 18px;
-            font-weight: 900;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .role-card p {
-            font-size: 12px;
-            color: #a3a3c2;
-            font-weight: 500;
-        }
-
-        /* === NUEVA SECCIÓN DE NORMATIVA INTERACTIVA === */
-        .rules-section {
-            padding: 60px 6% 100px 6%;
-        }
-
-        .rules-section h2 {
-            font-size: 22px;
-            text-transform: uppercase;
-            font-weight: 900;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            border-left: 4px solid #00f2fe;
-            padding-left: 12px;
-        }
-
-        .warning-box {
-            background: rgba(255, 0, 127, 0.1);
-            border: 1px solid #ff007f;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 35px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .warning-box i {
-            color: #ff007f;
-            font-size: 24px;
-        }
-
-        .warning-box p {
-            font-size: 13px;
-            font-weight: 700;
-            color: #ffccd8;
-            letter-spacing: 0.5px;
-        }
-
-        /* Pestañas de Navegación de Reglas */
-        .rules-tabs {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 15px;
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: #a3a3c2;
-            font-size: 16px;
-            font-weight: 900;
-            text-transform: uppercase;
-            cursor: pointer;
-            padding: 8px 16px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .tab-btn:hover, .tab-btn.active {
-            color: #00f2fe;
-        }
-
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -17px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #00f2fe;
-            box-shadow: 0 0 10px #00f2fe;
-        }
-
-        /* Contenedores de las Listas de Reglas */
-        .rules-content {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .rules-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .article-card {
-            background: rgba(14, 12, 26, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            padding: 25px;
-        }
-
-        .article-card h3 {
-            color: #00f2fe;
-            font-size: 16px;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
-            padding-bottom: 8px;
-        }
-
-        .article-card ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .article-card ul li {
-            font-size: 13px;
-            color: #cccccc;
-            line-height: 1.5;
-            font-weight: 500;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .article-card ul li strong {
-            color: #ff007f;
-            min-width: 25px;
-        }
+        /* SECCIÓN DE NORMATIVA */
+        .rules-section { padding: 60px 6% 100px 6%; }
+        .rules-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; letter-spacing: 1px; border-left: 4px solid #00f2fe; padding-left: 12px; }
+        .warning-box { background: rgba(255, 0, 127, 0.1); border: 1px solid #ff007f; border-radius: 6px; padding: 15px; margin-bottom: 35px; display: flex; align-items: center; gap: 15px; }
+        .warning-box i { color: #ff007f; font-size: 24px; }
+        .warning-box p { font-size: 13px; font-weight: 700; color: #ffccd8; letter-spacing: 0.5px; }
+        
+        .rules-tabs { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 2px solid rgba(255, 255, 255, 0.05); padding-bottom: 15px; }
+        .tab-btn { background: transparent; border: none; color: #a3a3c2; font-size: 16px; font-weight: 900; text-transform: uppercase; cursor: pointer; padding: 8px 16px; transition: 0.3s; position: relative; }
+        .tab-btn:hover, .tab-btn.active { color: #00f2fe; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -17px; left: 0; width: 100%; height: 2px; background: #00f2fe; box-shadow: 0 0 10px #00f2fe; }
+        
+        .rules-content { display: none; animation: fadeIn 0.4s ease forwards; }
+        .rules-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .article-card { background: rgba(14, 12, 26, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 25px; }
+        .article-card h3 { color: #00f2fe; font-size: 15px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.5px; border-bottom: 1px solid rgba(0, 242, 254, 0.1); padding-bottom: 8px; }
+        .article-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .article-card ul li { font-size: 13px; color: #cccccc; line-height: 1.5; font-weight: 500; display: flex; align-items: flex-start; gap: 10px; }
+        .article-card ul li strong { color: #ff007f; min-width: 25px; display: inline-block; }
     </style>
 </head>
 <body>
@@ -439,10 +312,9 @@
         <nav>
             <ul>
                 <li><a href="#" class="activo">Inicio</a></li>
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#facciones">Facciones</a></li>
                 <li><a href="#normativa">Reglas</a></li>
-                <li><a href="https://discord.gg/dqVxF4jExX" target="_blank">Discord</a></li>
-                <li><a href="#">Tienda</a></li>
-                <li><a href="https://discord.gg/n7anyGmvjG" target="_blank">Staff</a></li>
             </ul>
         </nav>
         <a href="https://discord.gg/dqVxF4jExX" target="_blank" class="btn-conectar-top">Conectar</a>
@@ -451,68 +323,73 @@
     <section class="hero-section">
         <div class="hero-content">
             <h1>VIVE MIAMI.<br>VIVE EL <span>ROLEPLAY.</span></h1>
-            <p>Un servidor serio, activo y con economía realista. Únete a la mejor comunidad de rol de Miami e intégrate a nuestras filas.</p>
-            <div class="hero-buttons">
-                <a href="https://discord.gg/dqVxF4jExX" target="_blank" class="btn-main btn-cyan"><i class="fa-solid fa-gamepad"></i> Conectar al servidor</a>
-                <a href="https://discord.gg/dqVxF4jExX" target="_blank" class="btn-main btn-pink"><i class="fa-brands fa-discord"></i> Unirse al Discord</a>
-            </div>
+            <p>Un servidor serio, activo y con economía realista dentro de Liberty County. Únete a la mejor comunidad de rol de Miami en Roblox e intégrate a nuestras filas.</p>
         </div>
     </section>
 
     <div class="stats-container">
         <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
-            <div class="stat-info"><h3>200</h3><p>Meta de Miembros</p></div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-building-shield"></i></div>
-            <div class="stat-info"><h3>4 Facciones</h3><p>Oficiales Activas</p></div>
+            <div class="stat-info">
+                <h3 id="txt-meta-miembros">...</h3>
+                <p>Meta de Miembros</p>
+            </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-            <div class="stat-info"><h3>Rol Serio</h3><p>Staff Activo 24/7</p></div>
+            <div class="stat-info"><h3>Rol serio.</h3><p>Staff Activo 24/7</p></div>
         </div>
     </div>
 
-    <section class="roles-section">
+    <section class="shop-section" id="tienda">
+        <h2>Tienda Oficial - Rangos VIP</h2>
+        <div class="shop-grid">
+            <div class="shop-card bronze">
+                <div>
+                    <div class="vip-stars"><i class="fa-solid fa-star"></i></div>
+                    <div class="vip-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>VIP Bronze</h3>
+                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 49 Robux</div>
+                </div>
+                <a href="https://www.roblox.com/es/game-pass/1853865218/VIP-BRONZE" target="_blank" class="btn-buy">Comprar VIP</a>
+            </div>
+            <div class="shop-card silver">
+                <div>
+                    <div class="vip-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="vip-icon"><i class="fa-solid fa-crown"></i></div>
+                    <h3>VIP Silver</h3>
+                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 99 Robux</div>
+                </div>
+                <a href="https://www.roblox.com/es/game-pass/1853733270/VIP-SILVER" target="_blank" class="btn-buy">Comprar VIP</a>
+            </div>
+            <div class="shop-card gold">
+                <div>
+                    <div class="vip-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="vip-icon"><i class="fa-solid fa-jet-fighter"></i></div>
+                    <h3>VIP Gold</h3>
+                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 199 Robux</div>
+                </div>
+                <a href="https://www.roblox.com/es/game-pass/1854243354/VIP-GOLD" target="_blank" class="btn-buy">Comprar VIP</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="roles-section" id="facciones">
         <h2>Nuestras Facciones Oficiales</h2>
         <div class="roles-grid">
-            
-            <div class="role-card mdpd">
-                <div class="role-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h4>MDPD</h4>
-                <p>Miami-Dade Police Department</p>
-            </div>
-
-            <div class="role-card bso">
-                <div class="role-icon"><i class="fa-solid fa-star-of-life"></i></div>
-                <h4>BSO</h4>
-                <p>Broward Sheriff's Office</p>
-            </div>
-
-            <div class="role-card mdfr">
-                <div class="role-icon"><i class="fa-solid fa-fire-extinguisher"></i></div>
-                <h4>MDFR</h4>
-                <p>Miami-Dade Fire Rescue</p>
-            </div>
-
-            <div class="role-card fdot">
-                <div class="role-icon"><i class="fa-solid fa-truck-field"></i></div>
-                <h4>FDOT</h4>
-                <p>Florida Dept. of Transportation</p>
-            </div>
-
+            <div class="role-card mdpd"><div class="role-icon"><i class="fa-solid fa-shield-halved"></i></div><h4>MDPD</h4><p>Miami-Dade Police Department</p></div>
+            <div class="role-card bso"><div class="role-icon"><i class="fa-solid fa-star-of-life"></i></div><h4>BSO</h4><p>Broward Sheriff's Office</p></div>
+            <div class="role-card mdfr"><div class="role-icon"><i class="fa-solid fa-fire-extinguisher"></i></div><h4>MDFR</h4><p>Miami-Dade Fire Rescue</p></div>
+            <div class="role-card fdot"><div class="role-icon"><i class="fa-solid fa-truck-field"></i></div><h4>FDOT</h4><p>Florida Dept. of Transportation</p></div>
         </div>
     </section>
 
     <section class="rules-section" id="normativa">
         <h2>Normativa del Servidor</h2>
-        
         <div class="warning-box">
             <i class="fa-solid fa-triangle-exclamation"></i>
             <p>AVISO IMPORTANTE: Cualquier Información que sea Duplicada o Copiada para usos externos se aplicará un baneo permanente de nuestra comunidad.</p>
         </div>
-
         <div class="rules-tabs">
             <button class="tab-btn active" onclick="switchTab('ic')">Reglas In Character (IC)</button>
             <button class="tab-btn" onclick="switchTab('ooc')">Reglas Out of Character (OOC)</button>
@@ -521,123 +398,30 @@
         <div id="rules-ic" class="rules-content active">
             <div class="articles-grid">
                 <div class="article-card">
-                    <h3>Artículo 1</h3>
+                    <h3>Bloque 1: Entorno y Vida</h3>
                     <ul>
-                        <li><strong>1.</strong> Debes esperar 5 minutos si hay EMS, si no hay EMS, debes esperar 3 minutos.</li>
-                        <li><strong>2.</strong> Debes valorar tu vida en todo momento.</li>
-                        <li><strong>3.</strong> No puedes regresar a la zona donde moriste (NLR).</li>
-                        <li><strong>4.</strong> Debes seguir las órdenes de la policía si estás rodeado.</li>
-                        <li><strong>5.</strong> Debes tener una razón IC válida para disparar.</li>
+                        <li><strong>Art 1.</strong> Debes esperar 5 minutos si hay EMS en camino; si no hay activos, el tiempo de espera mínimo en el suelo es de 3 minutos.</li>
+                        <li><strong>Art 2.</strong> Valoración de vida constante: Tu personaje debe reaccionar con miedo lógico y real ante armas o amenazas directas.</li>
+                        <li><strong>Art 3.</strong> New Life Rule (NLR): Si mueres, olvidas el rol anterior y tienes prohibido regresar al área del incidente durante 15 minutos.</li>
+                        <li><strong>Art 4.</strong> Queda prohibido forzar situaciones médicas o simular estados de inconsciencia falsos para evadir arrestos legales.</li>
                     </ul>
                 </div>
                 <div class="article-card">
-                    <h3>Artículo 2</h3>
+                    <h3>Bloque 2: Conducción y Vehículos</h3>
                     <ul>
-                        <li><strong>6.</strong> El rol de secuestro debe ser serio y realista.</li>
-                        <li><strong>7.</strong> No puedes realizar acciones irreales (fail RP).</li>
-                        <li><strong>8.</strong> Debes usar /me y /do correctamente.</li>
-                        <li><strong>9.</strong> No puedes ignorar el rol de otros jugadores.</li>
-                        <li><strong>10.</strong> Debes esperar 10 minutos entre robos grandes.</li>
+                        <li><strong>Art 5.</strong> Car Jacking (CJ): No puedes robar vehículos sin un rol previo estructurado o una amenaza directa válida.</li>
+                        <li><strong>Art 6.</strong> Conducción Temeraria Extrema: Está penalizado usar vehículos deportivos en zonas montañosas o terrenos no aptos.</li>
+                        <li><strong>Art 7.</strong> Choques Realistas: Si sufres un accidente vehicular grave, debes detenerte y rolear las heridas de forma obligatoria.</li>
+                        <li><strong>Art 8.</strong> Uso indebido de bocinas o sirenas de manera masiva con el único fin de molestar al entorno circundante.</li>
                     </ul>
                 </div>
                 <div class="article-card">
-                    <h3>Artículo 3</h3>
+                    <h3>Bloque 3: Interacciones Legales</h3>
                     <ul>
-                        <li><strong>11.</strong> No puedes disparar en zona segura.</li>
-                        <li><strong>12.</strong> No puedes robar sin interacción previa.</li>
-                        <li><strong>13.</strong> Debes interpretar correctamente tu personaje.</li>
-                        <li><strong>14.</strong> No puedes cambiar de rol sin motivo IC.</li>
-                        <li><strong>15.</strong> Debes respetar la cadena de mando si eres policía.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 4</h3>
-                    <ul>
-                        <li><strong>16.</strong> Debes esperar 2 minutos antes de rematar.</li>
-                        <li><strong>17.</strong> Debes respetar las escenas activas.</li>
-                        <li><strong>18.</strong> No puedes interrumpir roles ajenos.</li>
-                        <li><strong>19.</strong> Debes usar vestimenta acorde a tu rol.</li>
-                        <li><strong>20.</strong> No puedes iniciar tiroteos sin motivo.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 5</h3>
-                    <ul>
-                        <li><strong>21.</strong> Debes esperar refuerzos si eres policía.</li>
-                        <li><strong>22.</strong> No puedes usar vehículos irreales.</li>
-                        <li><strong>23.</strong> Debes mantener el rol serio en todo momento.</li>
-                        <li><strong>24.</strong> Debes respetar los tiempos de cooldown.</li>
-                        <li><strong>25.</strong> No puedes robar en zonas seguras.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 6</h3>
-                    <ul>
-                        <li><strong>26.</strong> Debes tener rol previo para secuestrar.</li>
-                        <li><strong>27.</strong> Debes usar nombres realistas.</li>
-                        <li><strong>28.</strong> No puedes hacer fail RP.</li>
-                        <li><strong>29.</strong> Debes seguir las normas de tu facción.</li>
-                        <li><strong>30.</strong> No puedes disparar sin advertencia (si aplica).</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 7</h3>
-                    <ul>
-                        <li><strong>31.</strong> Debes respetar el rol médico (EMS).</li>
-                        <li><strong>32.</strong> No puedes curarte sin EMS si hay disponibles.</li>
-                        <li><strong>33.</strong> Debes esperar al médico antes de revivir.</li>
-                        <li><strong>34.</strong> No puedes ignorar las heridas.</li>
-                        <li><strong>35.</strong> Debes rolear daños correctamente.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 8</h3>
-                    <ul>
-                        <li><strong>36.</strong> Debes respetar las jerarquías.</li>
-                        <li><strong>37.</strong> No puedes hacer roles troll.</li>
-                        <li><strong>38.</strong> Debes mantener coherencia IC.</li>
-                        <li><strong>39.</strong> No puedes huir sin razón IC.</li>
-                        <li><strong>40.</strong> Debes negociar en secuestros.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 9</h3>
-                    <ul>
-                        <li><strong>41.</strong> No puedes disparar sin rol previo.</li>
-                        <li><strong>42.</strong> Debes respetar los acuerdos IC.</li>
-                        <li><strong>43.</strong> No puedes cambiar de personaje constantemente.</li>
-                        <li><strong>44.</strong> Debes rolear arrestos correctamente.</li>
-                        <li><strong>45.</strong> No puedes resistirte sin motivo.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 10</h3>
-                    <ul>
-                        <li><strong>46.</strong> Debes acatar sanciones IC.</li>
-                        <li><strong>47.</strong> No puedes robar vehículos sin rol.</li>
-                        <li><strong>48.</strong> Debes apagar las sirenas si no hay emergencia.</li>
-                        <li><strong>49.</strong> No puedes abusar de las sirenas.</li>
-                        <li><strong>50.</strong> Debes usar armas adecuadas a tu rol.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 11</h3>
-                    <ul>
-                        <li><strong>51.</strong> No puedes hacer emboscadas sin rol previo.</li>
-                        <li><strong>52.</strong> Debes avisar antes de disparar (si es posible).</li>
-                        <li><strong>53.</strong> Debes respetar zonas de spawn.</li>
-                        <li><strong>54.</strong> Debes rolear choques correctamente.</li>
-                        <li><strong>55.</strong> No puedes ignorar accidentes.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 12</h3>
-                    <ul>
-                        <li><strong>56.</strong> Debes respetar los semáforos (si aplica).</li>
-                        <li><strong>57.</strong> No puedes abusar de los vehículos rápidos.</li>
-                        <li><strong>58.</strong> Debes rolear persecuciones correctamente.</li>
-                        <li><strong>59.</strong> No puedes esconderte en zonas seguras durante persecuciones.</li>
-                        <li><strong>60.</strong> Debes esperar tiempo de respawn.</li>
+                        <li><strong>Art 9.</strong> Corrupción Policial: Queda totalmente prohibido actuar como oficial corrupto sin aprobación expresa del Staff.</li>
+                        <li><strong>Art 10.</strong> Zonas Seguras: Comisarías, hospitales y puntos de aparición son áreas de tregua donde no se permiten actos criminales.</li>
+                        <li><strong>Art 11.</strong> El robo de armamento oficial a cuerpos policiales caídos requiere una justificación delictiva extrema y aprobada.</li>
+                        <li><strong>Art 12.</strong> Roles de secuestro o toma de rehenes civiles deben durar un tiempo máximo de 30 minutos para no congelar el juego.</li>
                     </ul>
                 </div>
             </div>
@@ -646,72 +430,30 @@
         <div id="rules-ooc" class="rules-content">
             <div class="articles-grid">
                 <div class="article-card">
-                    <h3>Artículo 1</h3>
+                    <h3>Bloque 1: Faltas de Convivencia</h3>
                     <ul>
-                        <li><strong>1.</strong> Está prohibido hacer RDM (matar sin razón IC).</li>
-                        <li><strong>2.</strong> Está prohibido hacer VDM (atropellar sin razón IC).</li>
-                        <li><strong>3.</strong> No puedes usar información OOC dentro del rol (MG).</li>
-                        <li><strong>4.</strong> No puedes desconectarte para evitar un rol (combat log).</li>
-                        <li><strong>5.</strong> No puedes abusar de bugs del juego.</li>
+                        <li><strong>Art 1.</strong> Random Deathmatch (RDM): Prohibido herir o matar a cualquier jugador sin un trasfondo o rol hostil activo.</li>
+                        <li><strong>Art 2.</strong> Vehicle Deathmatch (VDM): Queda estrictamente prohibido usar cualquier vehículo como arma para atropellar.</li>
+                        <li><strong>Art 3.</strong> MetaGaming (MG): Usar información obtenida fuera del juego (Discord, streamings) para beneficio de tu personaje.</li>
+                        <li><strong>Art 4.</strong> PowerGaming (PG): Realizar acciones imposibles en la vida real o forzar el rol para ganar siempre una situación.</li>
                     </ul>
                 </div>
                 <div class="article-card">
-                    <h3>Artículo 2</h3>
+                    <h3>Bloque 2: Comportamiento del Jugador</h3>
                     <ul>
-                        <li><strong>6.</strong> Está prohibido el spam en chat IC/OOC.</li>
-                        <li><strong>7.</strong> Debes respetar a todos los jugadores.</li>
-                        <li><strong>8.</strong> No puedes insultar fuera de rol (OOC).</li>
-                        <li><strong>9.</strong> No puedes forzar rol (PG).</li>
-                        <li><strong>10.</strong> Está prohibido el uso de hacks o cheats.</li>
+                        <li><strong>Art 5.</strong> Toxicidad OOC: Insultar, menospreciar o acosar a miembros de la comunidad a través de canales de texto o voz.</li>
+                        <li><strong>Art 6.</strong> Evasión de Rol: Desconectarse del servidor (Combat Logging) o forzar crasheos en medio de una persecución o arresto.</li>
+                        <li><strong>Art 7.</strong> Mal uso de canales globales (/me o /do) para discusiones personales o comentarios fuera de rol.</li>
+                        <li><strong>Art 8.</strong> Incitar a otros usuarios a romper normativas o coordinar boicots masivos dentro de las sesiones de juego.</li>
                     </ul>
                 </div>
                 <div class="article-card">
-                    <h3>Artículo 3</h3>
+                    <h3>Bloque 3: Normas Administrativas</h3>
                     <ul>
-                        <li><strong>11.</strong> Debes respetar zonas seguras.</li>
-                        <li><strong>12.</strong> No puedes abusar del micrófono (earrape, gritos, etc).</li>
-                        <li><strong>13.</strong> No puedes mentir usando OOC.</li>
-                        <li><strong>14.</strong> Debes obedecer a staff en todo momento.</li>
-                        <li><strong>15.</strong> No puedes evadir sanciones.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 4</h3>
-                    <ul>
-                        <li><strong>16.</strong> No puedes usar multicuentas para obtener ventaja.</li>
-                        <li><strong>17.</strong> No puedes abusar de animaciones.</li>
-                        <li><strong>18.</strong> No puedes hacer powergaming (PG).</li>
-                        <li><strong>19.</strong> No puedes abusar del chat OOC.</li>
-                        <li><strong>20.</strong> No puedes hacer meta en radios o chats.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 5</h3>
-                    <ul>
-                        <li><strong>21.</strong> Debes usar los canales correctamente.</li>
-                        <li><strong>22.</strong> No puedes matar por venganza OOC.</li>
-                        <li><strong>23.</strong> No puedes abusar del sistema económico.</li>
-                        <li><strong>24.</strong> Debes seguir todas las reglas del servidor.</li>
-                        <li><strong>25.</strong> No puedes usar lenguaje ofensivo o discriminatorio.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 6</h3>
-                    <ul>
-                        <li><strong>26.</strong> Debes respetar a los administradores.</li>
-                        <li><strong>27.</strong> No puedes discutir sanciones en IC.</li>
-                        <li><strong>28.</strong> Debes usar tickets para reportes o problemas.</li>
-                        <li><strong>29.</strong> No puedes rolear terrorismo sin permiso de staff.</li>
-                        <li><strong>30.</strong> Debes mantener orden en roles grandes.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Artículo 7</h3>
-                    <ul>
-                        <li><strong>31.</strong> No puedes hacer spawn kill.</li>
-                        <li><strong>32.</strong> No puedes usar comandos para obtener ventaja.</li>
-                        <li><strong>33.</strong> No puedes romper el ambiente RP.</li>
-                        <li><strong>34.</strong> Debes mantener el respeto en todo momento.</li>
+                        <li><strong>Art 9.</strong> Reportes falsos o malintencionados al equipo de Staff con la intención de perjudicar la experiencia de otro usuario.</li>
+                        <li><strong>Art 10.</strong> Suplantar la identidad de moderadores, administradores o directores utilizando nombres idénticos o similares.</li>
+                        <li><strong>Art 11.</strong> El uso de cualquier tipo de exploit, bug del mapa o software externo (hacks) resultará en baneo permanente instantáneo.</li>
+                        <li><strong>Art 12.</strong> Publicitar otros servidores de Roblox o comunidades de Discord ajenas a MCRP sin autorización escrita de los fundadores.</li>
                     </ul>
                 </div>
             </div>
@@ -719,21 +461,36 @@
     </section>
 
     <script>
+        // Sistema de pestañas de las reglas
         function switchTab(type) {
-            // Quitar clase activa a todos los botones y secciones
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.rules-content').forEach(content => content.classList.remove('active'));
             
-            // Añadir clase activa al correspondiente
             if(type === 'ic') {
                 document.getElementById('rules-ic').classList.add('active');
-                event.currentTarget.classList.add('active');
             } else {
                 document.getElementById('rules-ooc').classList.add('active');
-                event.currentTarget.classList.add('active');
+            }
+            event.currentTarget.classList.add('active');
+        }
+
+        // Carga dinámica desde LocalStorage
+        function cargarConfiguracion() {
+            const datosGuardados = localStorage.getItem('mcrp_config');
+            const txtMeta = document.getElementById('txt-meta-miembros');
+
+            if (datosGuardados) {
+                const data = JSON.parse(datosGuardados);
+                txtMeta.innerText = data.metaMiembros;
+            } else {
+                txtMeta.innerText = "200";
             }
         }
-    </script>
 
+        window.onload = function() {
+            cargarConfiguracion();
+            setInterval(cargarConfiguracion, 1000);
+        };
+    </script>
 </body>
 </html>
