@@ -11,299 +11,124 @@
     <meta property="og:image" content="https://cdn.discordapp.com/attachments/1497381219753525251/1507796252287565985/e38f7a6df8f6d4a428c8c65b426e8ec2.png?ex=6a133430&is=6a11e2b0&hm=e0ed5f618a0a39172de567c67546dd6307dfc08ea6680c73fcf3e37c60d8faba" />
     <meta property="og:url" content="https://discord.gg/dqVxF4jExX" />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image">
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #050409;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #050409; color: #ffffff; overflow-x: hidden; }
 
         /* BARRA DE NAVEGACIÓN */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 6%;
-            background: rgba(5, 4, 9, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-        }
-
-        .logo img {
-            height: 60px;
-            object-fit: contain;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav ul li a {
-            color: #a3a3c2;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover, nav ul li a.activo {
-            color: #00f2fe;
-            text-shadow: 0 0 10px #00f2fe;
-        }
-
-        .btn-conectar-top {
-            background: transparent;
-            border: 2px solid #00f2fe;
-            color: #ffffff;
-            padding: 10px 22px;
-            font-weight: 700;
-            border-radius: 4px;
-            text-decoration: none;
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-            transition: 0.3s;
-        }
-
-        .btn-conectar-top:hover {
-            background: #00f2fe;
-            color: #000;
-            box-shadow: 0 0 25px #00f2fe;
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(5, 4, 9, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 242, 254, 0.1); position: fixed; top: 0; width: 100%; z-index: 100; }
+        .logo img { height: 60px; object-fit: contain; }
+        nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
+        nav ul li a { color: #a3a3c2; text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
+        nav ul li a:hover, nav ul li a.activo { color: #00f2fe; text-shadow: 0 0 10px #00f2fe; }
+        .btn-conectar-top { background: transparent; border: 2px solid #00f2fe; color: #ffffff; padding: 10px 22px; font-weight: 700; border-radius: 4px; text-decoration: none; text-transform: uppercase; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transition: 0.3s; cursor: pointer; }
+        .btn-conectar-top:hover { background: #00f2fe; color: #000; box-shadow: 0 0 25px #00f2fe; }
 
         /* HERO SECCIÓN */
-        .hero-section {
-            position: relative;
-            height: 600px;
-            background: linear-gradient(135deg, #0a061a 0%, #050409 100%);
-            display: flex;
-            align-items: center;
-            padding: 0 6%;
-            padding-top: 80px;
-            border-bottom: 1px solid rgba(255, 0, 127, 0.05);
-        }
+        .hero-section { position: relative; height: 500px; background: linear-gradient(135deg, #0a061a 0%, #050409 100%); display: flex; align-items: center; padding: 0 6%; padding-top: 80px; }
+        .hero-content { max-width: 550px; position: relative; z-index: 2; }
+        .hero-content h1 { font-size: 52px; font-weight: 900; line-height: 1.1; text-transform: uppercase; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-content h1 span { color: #ff007f; text-shadow: 0 0 20px rgba(255, 0, 127, 0.6); }
+        .hero-content p { color: #cccccc; font-size: 15px; line-height: 1.6; margin-bottom: 35px; }
 
-        .hero-content {
-            max-width: 550px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
-            font-weight: 900;
-            line-height: 1.1;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero-content h1 span {
-            color: #ff007f;
-            text-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
-        }
-
-        .hero-content p {
-            color: #cccccc;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 35px;
-        }
-
-        /* CONTADORES / STATS */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            padding: 0 6%;
-            margin-top: -40px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 5;
-        }
-
-        .stat-card {
-            background: rgba(13, 11, 24, 0.95);
-            border: 1px solid rgba(0, 242, 254, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 6px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-icon {
-            font-size: 20px;
-            color: #00f2fe;
-        }
-
-        .stat-info h3 {
-            font-size: 18px;
-            font-weight: 900;
-        }
-
-        .stat-info p {
-            font-size: 11px;
-            color: #a3a3c2;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
+        /* CONTADORES */
+        .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding: 0 6%; margin-top: -40px; margin-bottom: 40px; position: relative; z-index: 5; }
+        .stat-card { background: rgba(13, 11, 24, 0.95); border: 1px solid rgba(0, 242, 254, 0.1); backdrop-filter: blur(10px); border-radius: 6px; padding: 15px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); }
+        .stat-icon { font-size: 20px; color: #00f2fe; }
+        .stat-info h3 { font-size: 18px; font-weight: 900; }
+        .stat-info p { font-size: 11px; color: #a3a3c2; text-transform: uppercase; font-weight: 700; }
 
         /* SECCIÓN DE TIENDA */
-        .shop-section {
-            padding: 80px 6% 40px 6%;
-            background: linear-gradient(180deg, #050409 0%, #0b0914 100%);
-        }
-
-        .shop-section h2 {
-            font-size: 22px;
-            text-transform: uppercase;
-            font-weight: 900;
-            margin-bottom: 35px;
-            letter-spacing: 1px;
-            border-left: 4px solid #ff007f;
-            padding-left: 12px;
-        }
-
-        .shop-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .shop-card {
-            background: rgba(16, 13, 29, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 35px 25px;
-            text-align: center;
-            transition: 0.3s ease-in-out;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 320px;
-        }
-
-        .shop-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            padding: 2px;
-            background: linear-gradient(180deg, transparent 60%, rgba(0, 242, 254, 0.2));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            transition: 0.3s;
-        }
-
-        .shop-card:hover {
-            transform: translateY(-8px);
-            background: rgba(22, 18, 41, 0.9);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-
-        .shop-card.bronze:hover { border-color: #cd7f32; box-shadow: 0 0 25px rgba(205, 127, 50, 0.2); }
-        .shop-card.silver:hover { border-color: #c0c0c0; box-shadow: 0 0 25px rgba(192, 192, 192, 0.2); }
-        .shop-card.gold:hover { border-color: #ffd700; box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); }
-
+        .shop-section { padding: 80px 6% 40px 6%; background: linear-gradient(180deg, #050409 0%, #0b0914 100%); }
+        .shop-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .shop-card { background: rgba(16, 13, 29, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 35px 25px; text-align: center; transition: 0.3s ease-in-out; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
+        .shop-card:hover { transform: translateY(-8px); background: rgba(22, 18, 41, 0.9); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
         .vip-stars { font-size: 14px; margin-bottom: 10px; }
         .bronze .vip-stars { color: #cd7f32; }
         .silver .vip-stars { color: #c0c0c0; }
         .gold .vip-stars { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
-
-        .vip-icon { font-size: 45px; margin-bottom: 20px; color: #ffffff; }
+        .vip-icon { font-size: 45px; margin-bottom: 20px; }
         .bronze .vip-icon { color: #cd7f32; }
         .silver .vip-icon { color: #c0c0c0; }
         .gold .vip-icon { color: #ffd700; }
-
         .shop-card h3 { font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
         .vip-price { font-size: 18px; font-weight: 700; color: #00f2fe; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        
-        .btn-buy { width: 100%; padding: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; border-radius: 6px; border: none; color: #ffffff; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; margin-top: auto; }
-        .bronze .btn-buy { background: #cd7f32; box-shadow: 0 4px 12px rgba(205, 127, 50, 0.3); }
-        .silver .btn-buy { background: #7a7a7a; box-shadow: 0 4px 12px rgba(122, 122, 122, 0.3); }
-        .gold .btn-buy { background: #ff007f; box-shadow: 0 4px 12px rgba(255, 0, 127, 0.3); }
-
+        .btn-buy { width: 100%; padding: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; border-radius: 6px; border: none; color: #ffffff; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
+        .bronze .btn-buy { background: #cd7f32; }
+        .silver .btn-buy { background: #7a7a7a; }
+        .gold .btn-buy { background: #ff007f; }
         .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
         /* SECCIÓN DE FACCIONES */
         .roles-section { padding: 60px 6% 40px 6%; }
         .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
-        .role-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: transparent; transition: 0.3s; }
-        .role-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); }
-        
-        .role-card.mdpd:hover { border-color: #0066ff; }
-        .role-card.mdpd:hover::before { background: #0066ff; }
-        .role-card.bso:hover { border-color: #d4af37; }
-        .role-card.bso:hover::before { background: #d4af37; }
-        .role-card.mdfr:hover { border-color: #ff0033; }
-        .role-card.mdfr:hover::before { background: #ff0033; }
-        .role-card.fdot:hover { border-color: #ff9900; }
-        .role-card.fdot:hover::before { background: #ff9900; }
-        .role-card.fbi:hover { border-color: #a020f0; }
-        .role-card.fbi:hover::before { background: #a020f0; }
-
-        .role-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 15px auto; background: rgba(255, 255, 255, 0.03); }
+        .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; }
+        .role-card:hover { transform: translateY(-5px); }
+        .role-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 15px auto; }
         .role-card.mdpd .role-icon { color: #0066ff; background: rgba(0, 102, 255, 0.1); }
         .role-card.bso .role-icon { color: #d4af37; background: rgba(212, 175, 55, 0.1); }
         .role-card.mdfr .role-icon { color: #ff0033; background: rgba(255, 0, 51, 0.1); }
         .role-card.fdot .role-icon { color: #ff9900; background: rgba(255, 153, 0, 0.1); }
         .role-card.fbi .role-icon { color: #a020f0; background: rgba(160, 32, 240, 0.1); }
-        
-        .role-card h4 { font-size: 18px; font-weight: 900; margin-bottom: 6px; letter-spacing: 0.5px; }
-        .role-card p { font-size: 12px; color: #a3a3c2; font-weight: 500; }
+        .role-card h4 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+        .role-card p { font-size: 12px; color: #a3a3c2; }
 
         /* SECCIÓN DE NORMATIVA */
-        .rules-section { padding: 60px 6% 100px 6%; }
+        .rules-section { padding: 60px 6% 40px 6%; }
         .rules-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; letter-spacing: 1px; border-left: 4px solid #00f2fe; padding-left: 12px; }
         .warning-box { background: rgba(255, 0, 127, 0.1); border: 1px solid #ff007f; border-radius: 6px; padding: 15px; margin-bottom: 35px; display: flex; align-items: center; gap: 15px; }
         .warning-box i { color: #ff007f; font-size: 24px; }
-        .warning-box p { font-size: 13px; font-weight: 700; color: #ffccd8; letter-spacing: 0.5px; }
+        .warning-box p { font-size: 13px; font-weight: 700; color: #ffccd8; }
         
-        .rules-tabs { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 2px solid rgba(255, 255, 255, 0.05); padding-bottom: 15px; }
-        .tab-btn { background: transparent; border: none; color: #a3a3c2; font-size: 16px; font-weight: 900; text-transform: uppercase; cursor: pointer; padding: 8px 16px; transition: 0.3s; position: relative; }
-        .tab-btn:hover, .tab-btn.active { color: #00f2fe; }
-        .tab-btn.active::after { content: ''; position: absolute; bottom: -17px; left: 0; width: 100%; height: 2px; background: #00f2fe; box-shadow: 0 0 10px #00f2fe; }
-        
-        .rules-content { display: none; animation: fadeIn 0.4s ease forwards; }
-        .rules-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
+        .rules-subtitle { font-size: 18px; text-transform: uppercase; font-weight: 900; color: #00f2fe; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid rgba(0, 242, 254, 0.2); padding-bottom: 8px; }
+
         .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .article-card { background: rgba(14, 12, 26, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 25px; }
-        .article-card h3 { color: #00f2fe; font-size: 15px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.5px; border-bottom: 1px solid rgba(0, 242, 254, 0.1); padding-bottom: 8px; }
+        .article-card h3 { color: #ff007f; font-size: 15px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(255, 0, 127, 0.1); padding-bottom: 8px; }
         .article-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .article-card ul li { font-size: 13px; color: #cccccc; line-height: 1.5; font-weight: 500; display: flex; align-items: flex-start; gap: 10px; }
-        .article-card ul li strong { color: #ff007f; min-width: 25px; display: inline-block; }
+        .article-card ul li { font-size: 13px; color: #cccccc; line-height: 1.5; }
+        .article-card ul li strong { color: #00f2fe; }
+
+        /* PORTAL DE LOGIN Y REGISTRO */
+        .auth-section { padding: 60px 6% 100px 6%; background: linear-gradient(180deg, #050409 0%, #0b0914 100%); }
+        .auth-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #00f2fe; padding-left: 12px; }
+        
+        .auth-split-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
+        
+        .auth-block-box { background: rgba(11, 9, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.03); padding: 35px 25px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        .auth-block-box h3 { font-size: 18px; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; color: #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.2); padding-bottom: 10px; text-align: center; }
+        
+        .single-panel-container { max-width: 550px; margin: 0 auto; }
+
+        .verify-instructions { background: rgba(0, 242, 254, 0.05); border: 1px dashed rgba(0, 242, 254, 0.3); border-radius: 6px; padding: 15px; font-size: 12px; color: #b3f7ff; margin-bottom: 20px; line-height: 1.5; }
+        .user-panel-info { text-align: center; }
+        .user-panel-info h4 { font-size: 20px; color: #00f2fe; margin-bottom: 15px; }
+        .user-data-list { text-align: left; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+        .user-data-list p { font-size: 13px; margin-bottom: 8px; color: #cccccc; }
+        .user-data-list strong { color: #ff007f; }
+        
+        .btn-logout { width: 100%; padding: 14px; background: #ff3333; border: none; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 51, 51, 0.3); margin-top: 10px; transition: 0.3s; }
+        .btn-logout:hover { filter: brightness(1.2); }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #a3a3c2; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .input-group input { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 15px; color: #ffffff; font-size: 14px; outline: none; transition: 0.3s; }
+        .input-group input:focus { border-color: #00f2fe; box-shadow: 0 0 10px rgba(0, 242, 254, 0.15); }
+        
+        .btn-submit { width: 100%; padding: 14px; background: #ff007f; border: none; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3); transition: 0.3s; }
+        .btn-submit:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        .form-status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 700; display: none; }
+        .form-status.success { color: #00ff88; }
+        .form-status.error { color: #ff3333; }
     </style>
 </head>
 <body>
@@ -318,9 +143,10 @@
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#facciones">Facciones</a></li>
                 <li><a href="#normativa">Reglas</a></li>
+                <li><a href="#cuenta">Mi Cuenta</a></li>
+                <li><button onclick="irAlPortal()" class="btn-conectar-top" id="topNavAuthBtn">Ingresar</button></li>
             </ul>
         </nav>
-        <a href="https://discord.gg/dqVxF4jExX" target="_blank" class="btn-conectar-top">Conectar</a>
     </header>
 
     <section class="hero-section">
@@ -333,14 +159,11 @@
     <div class="stats-container">
         <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
-            <div class="stat-info">
-                <h3 id="txt-meta-miembros">...</h3>
-                <p>Meta de Miembros</p>
-            </div>
+            <div class="stat-info"><h3 id="txt-meta-miembros">Meta: 200</h3><p>Meta de Miembros</p></div>
         </div>
         <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-            <div class="stat-info"><h3>Rol serio.</h3><p>Staff Activo 24/7</p></div>
+            <div class="stat-info"><h3 id="txt-estado-convocatoria">Rol Serio</h3><p>Convocatorias Staff</p></div>
         </div>
     </div>
 
@@ -394,106 +217,303 @@
             <i class="fa-solid fa-triangle-exclamation"></i>
             <p>AVISO IMPORTANTE: Cualquier Información que sea Duplicada o Copiada para usos externos se aplicará un baneo permanente de nuestra comunidad.</p>
         </div>
-        <div class="rules-tabs">
-            <button class="tab-btn active" onclick="switchTab('ic')">Reglas In Character (IC)</button>
-            <button class="tab-btn" onclick="switchTab('ooc')">Reglas Out of Character (OOC)</button>
-        </div>
 
-        <div id="rules-ic" class="rules-content active">
-            <div class="articles-grid">
-                <div class="article-card">
-                    <h3>Bloque 1: Entorno y Vida</h3>
-                    <ul>
-                        <li><strong>Art 1.</strong> Debes esperar 5 minutos si hay EMS en camino; si no hay activos, el tiempo de espera mínimo en el suelo es de 3 minutos.</li>
-                        <li><strong>Art 2.</strong> Valoración de vida constante: Tu personaje debe reaccionar con miedo lógico y real ante armas o amenazas directas.</li>
-                        <li><strong>Art 3.</strong> New Life Rule (NLR): Si mueres, olvidas el rol anterior y tienes prohibido regresar al área del incidente durante 15 minutos.</li>
-                        <li><strong>Art 4.</strong> Queda prohibido forzar situaciones médicas o simular estados de inconsciencia falsos para evadir arrestos legales.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Bloque 2: Conducción y Vehículos</h3>
-                    <ul>
-                        <li><strong>Art 5.</strong> Car Jacking (CJ): No puedes robar vehículos sin un rol previo estructurado o una amenaza directa válida.</li>
-                        <li><strong>Art 6.</strong> Conducción Temeraria Extrema: Está penalizado usar vehículos deportivos en zonas montañosas o terrenos no aptos.</li>
-                        <li><strong>Art 7.</strong> Choques Realistas: Si sufres un accidente vehicular grave, debes detenerte y rolear las heridas de forma obligatoria.</li>
-                        <li><strong>Art 8.</strong> Uso indebido de bocinas o sirenas de manera masiva con el único fin de molestar al entorno circundante.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Bloque 3: Interacciones Legales</h3>
-                    <ul>
-                        <li><strong>Art 9.</strong> Corrupción Policial: Queda totalmente prohibido actuar como oficial corrupto sin aprobación expresa del Staff.</li>
-                        <li><strong>Art 10.</strong> Zonas Seguras: Comisarías, hospitales y puntos de aparición son áreas de tregua donde no se permiten actos criminales.</li>
-                        <li><strong>Art 11.</strong> El robo de armamento oficial a cuerpos policiales caídos requiere una justificación delictiva extrema y aprobada.</li>
-                        <li><strong>Art 12.</strong> Roles de secuestro o toma de rehenes civiles deben durar un tiempo máximo de 30 minutos para no congelar el juego.</li>
-                    </ul>
-                </div>
+        <div class="rules-subtitle"><i class="fa-solid fa-gavel"></i> Reglamento General (40 Artículos)</div>
+        <div class="articles-grid">
+            
+            <div class="article-card">
+                <h3>Bloque 1: Convivencia y Respeto</h3>
+                <ul>
+                    <li><strong>Art. 1.</strong> Prohibición de spam: Está prohibido enviar mensajes repetitivos, menciones masivas, cadenas o cualquier tipo de spam, tanto en canales de texto como de voz.</li>
+                    <li><strong>Art. 2.</strong> Respeto entre miembros: Todos los usuarios deberán mantener un trato respetuoso entre sí, especialmente hacia el staff. Insultos, amenazas, provocaciones o actitudes tóxicas no serán toleradas.</li>
+                    <li><strong>Art. 3.</strong> Contenido inapropiado: Queda estrictamente prohibido compartir contenido violento, sexual, explícito, discriminatorio o no apto para todo público, incluyendo imágenes, videos, enlaces o nombres de usuario.</li>
+                    <li><strong>Art. 4.</strong> Uso indebido de bugs o errores: Está prohibido aprovecharse de errores, bugs o fallos del sistema. Cualquier error detectado deberá ser reportado inmediatamente al staff.</li>
+                    <li><strong>Art. 5.</strong> Copia del servidor: No está permitido copiar, imitar o replicar ideas, configuraciones, canales, roles, bots o estructuras del servidor. El incumplimiento podrá derivar en blacklist.</li>
+                    <li><strong>Art. 6.</strong> Metarol: Está prohibido intervenir o influir en escenas de rol en las que el personaje no esté presente o no haya sido involucrado de manera IC.</li>
+                    <li><strong>Art. 7.</strong> Uso de bots administrativos: Los bots de administración son de uso exclusivo del staff. Su utilización sin autorización será sancionada.</li>
+                    <li><strong>Art. 8.</strong> Publicidad sin autorización: No se permite promocionar otros servidores, comunidades, redes sociales o proyectos sin autorización expresa del staff.</li>
+                </ul>
+            </div>
+
+            <div class="article-card">
+                <h3>Bloque 2: Canales y Comunicación</h3>
+                <ul>
+                    <li><strong>Art. 9.</strong> Uso correcto de los canales: Cada canal tiene un propósito específico. Los usuarios deberán respetar su uso y evitar desvíos constantes del tema.</li>
+                    <li><strong>Art. 10.</strong> Flood: Está prohibido enviar múltiples mensajes innecesarios en corto período de tiempo que dificulten la comunicación.</li>
+                    <li><strong>Art. 11.</strong> Información personal: No se permite compartir información personal propia o de terceros, incluyendo nombres reales, direcciones, números telefónicos u otros datos sensibles.</li>
+                    <li><strong>Art. 12.</strong> Suplantación de identidad: Hacerse pasar por otro usuario, miembro del staff o entidad oficial del servidor será motivo de sanción grave o expulsión.</li>
+                    <li><strong>Art. 13.</strong> Conflictos personales: Los conflictos personales deberán resolverse en privado o mediante el staff. No se permiten discusiones públicas que afecten el ambiente del servidor.</li>
+                    <li><strong>Art. 14.</strong> Lenguaje adecuado: El lenguaje utilizado deberá ser apropiado. No se permiten expresiones ofensivas, discriminatorias o degradantes.</li>
+                    <li><strong>Art. 15.</strong> Contenido político o religioso: Queda prohibida la difusión de contenido político o religioso extremo que pueda generar conflictos entre los miembros.</li>
+                    <li><strong>Art. 16.</strong> Uso de cheats o modificaciones: Está prohibido utilizar programas externos, cheats o modificaciones que otorguen ventajas injustas dentro del rol o el servidor.</li>
+                </ul>
+            </div>
+
+            <div class="article-card">
+                <h3>Bloque 3: Canales de Voz y Roles</h3>
+                <ul>
+                    <li><strong>Art. 17.</strong> Autoridad del staff: Las indicaciones del staff deberán respetarse. Ignorar advertencias o instrucciones podrá derivar en sanciones mayores.</li>
+                    <li><strong>Art. 18.</strong> Nombres de usuario: Los nombres de usuario deberán ser apropiados. No se permiten nombres ofensivos, confusos, excesivamente largos o que imiten al staff.</li>
+                    <li><strong>Art. 19.</strong> Uso de música en canales de voz: La reproducción de música en canales de voz solo estará permitida con el consentimiento de todos los presentes.</li>
+                    <li><strong>Art. 20.</strong> Comportamiento en canales de voz: Se deberá mantener un comportamiento adecuado en canales de voz. Gritos, ruidos molestos o interrupciones constantes no están permitidos.</li>
+                    <li><strong>Art. 21.</strong> Uso de menciones: El uso de menciones masivas o innecesarias está prohibido, salvo autorización del staff.</li>
+                    <li><strong>Art. 22.</strong> Respeto a decisiones administrativas: Las decisiones del staff no deben discutirse públicamente. Cualquier inconformidad deberá tratarse por los canales correspondientes.</li>
+                    <li><strong>Art. 23.</strong> Multicuenta: El uso de múltiples cuentas para evadir sanciones o obtener beneficios está prohibido.</li>
+                    <li><strong>Art. 24.</strong> Advertencias y sanciones: El incumplimiento de estas normas podrá resultar en advertencias (warnings). La acumulación de advertencias conllevará sanciones mayores.</li>
+                </ul>
+            </div>
+
+            <div class="article-card">
+                <h3>Bloque 4: Mecánicas e Inmersión del Rol</h3>
+                <ul>
+                    <li><strong>Art. 25.</strong> Conducta general: Todos los miembros deberán contribuir a un ambiente sano, organizado y respetuoso dentro de la comunidad.</li>
+                    <li><strong>Art. 26.</strong> Uso indebido de comandos: Está prohibido el uso excesivo o indebido de comandos que afecten la experiencia de otros usuarios o el funcionamiento del servidor.</li>
+                    <li><strong>Art. 27.</strong> Troll o comportamiento disruptivo: No se permite realizar acciones con la intención de molestar, provocar o arruinar la experiencia de otros jugadores.</li>
+                    <li><strong>Art. 28.</strong> Abuso de reportes: El uso indebido del sistema de reportes, ya sea con información falsa o sin fundamentos, será sancionado.</li>
+                    <li><strong>Art. 29.</strong> Uso correcto del IC y OOC: Se debe respetar la diferencia entre información IC (dentro del rol) y OOC (fuera del rol). Mezclar ambas sin justificación está prohibido.</li>
+                    <li><strong>Art. 30.</strong> Interrupción de escenas: No se permite interrumpir escenas de rol activas sin motivo válido o sin estar involucrado en la situación.</li>
+                    <li><strong>Art. 31.</strong> Respeto a nuevos usuarios: Se debe mantener una actitud respetuosa y de apoyo hacia los nuevos miembros del servidor.</li>
+                    <li><strong>Art. 32.</strong> Uso de lenguaje en rol: Durante el roleplay se debe mantener coherencia y seriedad en el lenguaje utilizado acorde al entorno del servidor.</li>
+                </ul>
+            </div>
+
+            <div class="article-card">
+                <h3>Bloque 5: Restricciones y Realismo</h3>
+                <ul>
+                    <li><strong>Art. 33.</strong> Abuso de mecánicas del juego: Queda prohibido el uso de mecánicas del juego de forma irrealista o para obtener ventajas injustas dentro del rol.</li>
+                    <li><strong>Art. 34.</strong> Roles irreales: No se permite realizar acciones irreales o poco creíbles que rompan la inmersión del roleplay.</li>
+                    <li><strong>Art. 35.</strong> Desconexión para evitar rol (Combat Log): Está prohibido desconectarse intencionalmente para evitar consecuencias dentro de una escena de rol.</li>
+                    <li><strong>Art. 36.</strong> Uso de información externa: No se permite utilizar información obtenida fuera del servidor (streams, chats, etc.) para beneficio dentro del rol.</li>
+                    <li><strong>Art. 37.</strong> Abuso de autoridad IC: Los usuarios con roles de autoridad dentro del juego no deben abusar de su posición para beneficio personal.</li>
+                    <li><strong>Art. 38.</strong> Roles forzados: No se permite obligar a otros usuarios a aceptar acciones sin darles oportunidad de responder (Forzar rol).</li>
+                    <li><strong>Art. 39.</strong> Respeto al entorno: Se debe respetar el entorno del juego, evitando acciones que rompan la ambientación o lógica del rol.</li>
+                    <li><strong>Art. 40.</strong> Uso de vehículos y armas: El uso de vehículos y armas debe ser coherente con el rol y la situación. No se permite su uso sin justificación.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="auth-section" id="cuenta">
+        <h2>Portal del Ciudadano (MCRP)</h2>
+        
+        <div id="authFormsBox" class="auth-split-grid">
+            
+            <div class="auth-block-box">
+                <h3>Iniciar Sesión</h3>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Usuario de Roblox o Discord:</label>
+                        <input type="text" id="loginUser" placeholder="Ej: MaxPlayer" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Contraseña:</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Ingresar al Sistema</button>
+                </form>
+            </div>
+
+            <div class="auth-block-box">
+                <h3>Primer Registro</h3>
+                
+                <form id="registerStep1Form">
+                    <div class="input-group">
+                        <label>Usuario de Roblox:</label>
+                        <input type="text" id="regRoblox" placeholder="Tu nombre exacto de Roblox" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Usuario de Discord (Sin @):</label>
+                        <input type="text" id="regDiscord" placeholder="Ej: mi_usuario_discord" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Crea una Contraseña:</label>
+                        <input type="password" id="regPassword" minlength="6" placeholder="Min. 6 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn-submit" style="background: #00f2fe; color: #000; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);">Solicitar Código</button>
+                </form>
+
+                <form id="registerStep2Form" style="display: none;">
+                    <div class="verify-instructions">
+                        <i class="fa-solid fa-circle-info"></i> El Bot de MCRP ha recibido tu solicitud. Revisa tus Mensajes Directos de Discord e introduce el código aquí abajo.
+                    </div>
+                    <div class="input-group">
+                        <label>Código de 6 dígitos enviado por el Bot:</label>
+                        <input type="text" id="regCode" placeholder="000000" maxlength="6" style="text-align: center; font-size: 20px; letter-spacing: 2px;" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Verificar y Registrar Cuenta</button>
+                </form>
             </div>
         </div>
 
-        <div id="rules-ooc" class="rules-content">
-            <div class="articles-grid">
-                <div class="article-card">
-                    <h3>Bloque 1: Faltas de Convivencia</h3>
-                    <ul>
-                        <li><strong>Art 1.</strong> Random Deathmatch (RDM): Prohibido herir o matar a cualquier jugador sin un trasfondo o rol hostil activo.</li>
-                        <li><strong>Art 2.</strong> Vehicle Deathmatch (VDM): Queda estrictamente prohibido usar cualquier vehículo como arma para atropellar.</li>
-                        <li><strong>Art 3.</strong> MetaGaming (MG): Usar información obtenida fuera del juego (Discord, streamings) para beneficio de tu personaje.</li>
-                        <li><strong>Art 4.</strong> PowerGaming (PG): Realizar acciones imposibles en la vida real o forzar el rol para ganar siempre una situación.</li>
-                    </ul>
+        <div id="userPanelBox" style="display: none;" class="single-panel-container user-panel-info">
+            <div class="auth-block-box">
+                <h4><i class="fa-solid fa-circle-check" style="color: #00ff88;"></i> Sesión Activa</h4>
+                <div class="user-data-list" style="margin-top: 15px;">
+                    <p>🤖 <strong>Usuario Roblox:</strong> <span id="lblRoblox">...</span></p>
+                    <p>🆔 <strong>ID Roblox:</strong> <span id="lblRobloxID">...</span></p>
+                    <p>💬 <strong>Usuario Discord:</strong> <span id="lblDiscord">...</span></p>
+                    <p>🎭 <strong>Rango / Rol:</strong> <span id="lblUserRole" style="color: #00f2fe;">Civil</span></p>
                 </div>
-                <div class="article-card">
-                    <h3>Bloque 2: Comportamiento del Jugador</h3>
-                    <ul>
-                        <li><strong>Art 5.</strong> Toxicidad OOC: Insultar, menospreciar o acosar a miembros de la comunidad a través de canales de texto o voz.</li>
-                        <li><strong>Art 6.</strong> Evasión de Rol: Desconectarse del servidor (Combat Logging) o forzar crasheos en medio de una persecución o arresto.</li>
-                        <li><strong>Art 7.</strong> Mal uso de canales globales (/me o /do) para discusiones personales o comentarios fuera de rol.</li>
-                        <li><strong>Art 8.</strong> Incitar a otros usuarios a romper normativas o coordinar boicots masivos dentro de las sesiones de juego.</li>
-                    </ul>
-                </div>
-                <div class="article-card">
-                    <h3>Bloque 3: Normas Administrativas</h3>
-                    <ul>
-                        <li><strong>Art 9.</strong> Reportes falsos o malintencionados al equipo de Staff con la intención de perjudicar la experiencia de otro usuario.</li>
-                        <li><strong>Art 10.</strong> Suplantar la identidad de moderadores, administradores o directores utilizando nombres idénticos o similares.</li>
-                        <li><strong>Art 11.</strong> El uso de cualquier tipo de exploit, bug del mapa o software externo (hacks) resultará en baneo permanente instantáneo.</li>
-                        <li><strong>Art 12.</strong> Publicitar otros servidores de Roblox o comunidades de Discord ajenas a MCRP sin autorización escrita de los fundadores.</li>
-                    </ul>
-                </div>
+                <button onclick="cerrarSesionJugador()" class="btn-logout">Cerrar Sesión</button>
             </div>
+        </div>
+
+        <div style="max-width: 400px; margin: 15px auto 0 auto;">
+            <div id="authStatusMsg" class="form-status"></div>
         </div>
     </section>
 
     <script>
-        // Sistema de pestañas de las reglas
-        function switchTab(type) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.rules-content').forEach(content => content.classList.remove('active'));
-            
-            if(type === 'ic') {
-                document.getElementById('rules-ic').classList.add('active');
-            } else {
-                document.getElementById('rules-ooc').classList.add('active');
-            }
-            event.currentTarget.classList.add('active');
+        // === CREDENCIALES DE TU SUPABASE ===
+        const SUPABASE_URL = "https://cjiksanxgtzdchhamqkb.supabase.co/rest/v1/"; 
+        const SUPABASE_ANON_KEY = "sb_publishable_ud07ELO-Pl9pPJdUMY88Bw_AbQVHTCp";
+        
+        const clientSupabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let codigoGeneradoLocal = "";
+        let datosRegistroTemporal = {};
+
+        function irAlPortal() {
+            document.getElementById('cuenta').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Carga dinámica desde LocalStorage
-        function cargarConfiguracion() {
-            const datosGuardados = localStorage.getItem('mcrp_config');
-            const txtMeta = document.getElementById('txt-meta-miembros');
+        function mostrarMensajeAuth(texto, esExito) {
+            const el = document.getElementById('authStatusMsg');
+            if(!texto) { el.style.display = 'none'; return; }
+            el.textContent = texto;
+            el.className = esExito ? "form-status success" : "form-status error";
+            el.style.display = "block";
+        }
 
-            if (datosGuardados) {
-                const data = JSON.parse(datosGuardados);
-                txtMeta.innerText = data.metaMiembros;
-            } else {
-                txtMeta.innerText = "200";
+        // Paso 1: Mandar datos a Supabase para que el bot los vea
+        document.getElementById('registerStep1Form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            mostrarMensajeAuth("Comprobando disponibilidad y generando código...", true);
+            
+            const rbx = document.getElementById('regRoblox').value.trim();
+            const dsc = document.getElementById('regDiscord').value.trim();
+            const pass = document.getElementById('regPassword').value;
+
+            // Verificar si el usuario ya existe en las cuentas creadas
+            const { data: usuarioExistente } = await clientSupabase
+                .from('usuarios_mcrp')
+                .select('*')
+                .or(`roblox_user.ilike.${rbx},discord_user.ilike.${dsc}`);
+
+            if (usuarioExistente && usuarioExistente.length > 0) {
+                mostrarMensajeAuth("Error: Este usuario ya está registrado en el sistema.", false);
+                return;
             }
+
+            // Generar código de 6 dígitos aleatorio
+            codigoGeneradoLocal = Math.floor(100000 + Math.random() * 900000).toString();
+            datosRegistroTemporal = { rbx, dsc, pass };
+
+            // INSERTAR EN LA TABLA QUE EL BOT ESTÁ LEYENDO
+            const { error } = await clientSupabase
+                .from('verificaciones_pendientes')
+                .insert([{ discord_user: dsc, codigo: codigoGeneradoLocal, enviado: false }]);
+
+            if(error) {
+                mostrarMensajeAuth("Error al conectar con la base de datos de verificaciones.", false);
+                console.error(error);
+                return;
+            }
+
+            // ¡CAMBIO VISUAL! Ocultamos los datos anteriores y mostramos dónde poner el código
+            document.getElementById('registerStep1Form').style.display = 'none';
+            document.getElementById('registerStep2Form').style.display = 'block';
+            
+            mostrarMensajeAuth("¡Solicitud enviada! Revisa tus Mensajes Directos en Discord.", true);
+        });
+
+        // Paso 2: Verificar el código introducido por el usuario
+        document.getElementById('registerStep2Form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const codigoIntroducido = document.getElementById('regCode').value.trim();
+
+            if(codigoIntroducido === codigoGeneradoLocal) {
+                mostrarMensajeAuth("Código correcto. Registrando cuenta final...", true);
+                const hoy = new Date().toLocaleDateString();
+                const idSimulado = Math.floor(10000000 + Math.random() * 90000000).toString();
+
+                // Insertar definitivamente en la tabla de usuarios registrados
+                await clientSupabase.from('usuarios_mcrp').insert([{
+                    roblox_user: datosRegistroTemporal.rbx,
+                    roblox_id: idSimulado,
+                    discord_user: datosRegistroTemporal.dsc,
+                    password_hash: datosRegistroTemporal.pass,
+                    fecha_registro: hoy,
+                    ultima_conexion: hoy,
+                    rango: "Civil"
+                }]);
+
+                localStorage.setItem('mcrp_session_activa', JSON.stringify({ roblox: datosRegistroTemporal.rbx, robloxID: idSimulado, discord: datosRegistroTemporal.dsc, rango: "Civil" }));
+                mostrarMensajeAuth("¡Cuenta creada exitosamente! Bienvenido.", true);
+                setTimeout(verificarEstadoSesion, 1500);
+            } else {
+                mostrarMensajeAuth("El código introducido es incorrecto. Inténtalo de nuevo.", false);
+            }
+        });
+
+        // Login Tradicional
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            mostrarMensajeAuth("Verificando credenciales...", true);
+
+            const userKey = document.getElementById('loginUser').value.trim();
+            const pass = document.getElementById('loginPassword').value;
+
+            const { data: usuario } = await clientSupabase.from('usuarios_mcrp').select('*').or(`roblox_user.ilike.${userKey},discord_user.ilike.${userKey}`);
+
+            if(!usuario || usuario.length === 0) {
+                mostrarMensajeAuth("El usuario no existe.", false);
+                return;
+            }
+
+            if(usuario[0].password_hash === pass) {
+                localStorage.setItem('mcrp_session_activa', JSON.stringify({ roblox: usuario[0].roblox_user, robloxID: usuario[0].roblox_id, discord: usuario[0].discord_user, rango: usuario[0].rango }));
+                mostrarMensajeAuth("¡Inicio de sesión correcto!", true);
+                setTimeout(verificarEstadoSesion, 1500);
+            } else {
+                mostrarMensajeAuth("Contraseña incorrecta.", false);
+            }
+        });
+
+        function verificarEstadoSesion() {
+            const sesion = localStorage.getItem('mcrp_session_activa');
+            const authFormsBox = document.getElementById('authFormsBox');
+            const userPanelBox = document.getElementById('userPanelBox');
+            const topBtn = document.getElementById('topNavAuthBtn');
+
+            document.getElementById('registerStep1Form').style.display = 'block';
+            document.getElementById('registerStep2Form').style.display = 'none';
+
+            if(sesion) {
+                const data = JSON.parse(sesion);
+                authFormsBox.style.display = 'none';
+                userPanelBox.style.display = 'block';
+                document.getElementById('lblRoblox').textContent = data.roblox;
+                document.getElementById('lblRobloxID').textContent = data.robloxID;
+                document.getElementById('lblDiscord').textContent = data.discord;
+                document.getElementById('lblUserRole').textContent = data.rango;
+                topBtn.textContent = `Panel: ${data.roblox}`;
+            } else {
+                authFormsBox.style.display = 'grid';
+                userPanelBox.style.display = 'none';
+                topBtn.textContent = "Ingresar";
+            }
+        }
+
+        function cerrarSesionJugador() {
+            localStorage.removeItem('mcrp_session_activa');
+            verificarEstadoSesion();
+            mostrarMensajeAuth("Sesión cerrada correctamente.", true);
         }
 
         window.onload = function() {
-            cargarConfiguracion();
-            setInterval(cargarConfiguracion, 1000);
+            verificarEstadoSesion();
         };
     </script>
 </body>
