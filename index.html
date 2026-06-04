@@ -104,7 +104,7 @@
         
         .auth-split-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         
-        .auth-block-box { background: rgba(11, 9, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.03); padding: 35px 25px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        .auth-block-box { background: rgba(11, 9, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.03); padding: 35px 25px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); position: relative; }
         .auth-block-box h3 { font-size: 18px; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; color: #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.2); padding-bottom: 10px; text-align: center; }
         
         .single-panel-container { max-width: 550px; margin: 0 auto; }
@@ -124,6 +124,9 @@
         .input-group input { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 15px; color: #ffffff; font-size: 14px; outline: none; transition: 0.3s; }
         .input-group input:focus { border-color: #00f2fe; box-shadow: 0 0 10px rgba(0, 242, 254, 0.15); }
         
+        .link-forgot { display: block; text-align: right; font-size: 12px; color: #ff007f; text-decoration: none; font-weight: 700; margin-top: -10px; margin-bottom: 20px; transition: 0.2s; cursor: pointer; }
+        .link-forgot:hover { color: #00f2fe; text-shadow: 0 0 5px #00f2fe; }
+
         .btn-submit { width: 100%; padding: 14px; background: #ff007f; border: none; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3); transition: 0.3s; }
         .btn-submit:hover { transform: translateY(-2px); filter: brightness(1.2); }
         .form-status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 700; display: none; }
@@ -254,7 +257,8 @@
         <h2>Portal del Ciudadano (MCRP)</h2>
         
         <div id="authFormsBox" class="auth-split-grid">
-            <div class="auth-block-box">
+            
+            <div class="auth-block-box" id="loginBoxContainer">
                 <h3>Iniciar Sesión</h3>
                 <form id="loginForm">
                     <div class="input-group">
@@ -265,11 +269,40 @@
                         <label>Contraseña:</label>
                         <input type="password" id="loginPassword" placeholder="••••••••" required>
                     </div>
+                    <span class="link-forgot" onclick="mostrarRecuperarClave()">¿No recuerdas tu contraseña?</span>
                     <button type="submit" class="btn-submit">Ingresar al Sistema</button>
                 </form>
             </div>
 
-            <div class="auth-block-box">
+            <div class="auth-block-box" id="recoveryBoxContainer" style="display: none;">
+                <h3>Recuperar Contraseña</h3>
+                
+                <form id="recoveryStep1Form">
+                    <div class="input-group">
+                        <label>Usuario de Discord (Sin @):</label>
+                        <input type="text" id="recDiscordUser" placeholder="Ej: mi_usuario_discord" required>
+                    </div>
+                    <button type="submit" class="btn-submit" style="background: #00f2fe; color: #000;">Solicitar Código de Cambio</button>
+                    <span class="link-forgot" onclick="mostrarCajaLogin()" style="text-align: center; margin-top: 15px; color: #a3a3c2;">Volver al Login</span>
+                </form>
+
+                <form id="recoveryStep2Form" style="display: none;">
+                    <div class="verify-instructions">
+                        <i class="fa-solid fa-circle-info"></i> El Bot te ha enviado un código a tus Mensajes Directos de Discord. Introdúcelo abajo junto a tu nueva clave.
+                    </div>
+                    <div class="input-group">
+                        <label>Código recibido (6 dígitos):</label>
+                        <input type="text" id="recCode" placeholder="000000" maxlength="6" style="text-align: center; font-size: 20px; letter-spacing: 2px;" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Nueva Contraseña:</label>
+                        <input type="password" id="recNewPassword" minlength="6" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Cambiar y Actualizar Contraseña</button>
+                </form>
+            </div>
+
+            <div class="auth-block-box" id="registerBoxContainer">
                 <h3>Primer Registro</h3>
                 <form id="registerStep1Form">
                     <div class="input-group">
@@ -326,7 +359,9 @@
         const clientSupabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let codigoGeneradoLocal = "";
+        let codigoRecoveryLocal = "";
         let datosRegistroTemporal = {};
+        let usuarioRecoveryDiscord = "";
 
         function irAlPortal() {
             document.getElementById('cuenta').scrollIntoView({ behavior: 'smooth' });
@@ -340,18 +375,32 @@
             el.style.display = "block";
         }
 
+        // CONTROL VISUAL DE RECOVERY
+        function mostrarRecuperarClave() {
+            document.getElementById('loginBoxContainer').style.display = 'none';
+            document.getElementById('recoveryBoxContainer').style.display = 'block';
+            document.getElementById('recoveryStep1Form').style.display = 'block';
+            document.getElementById('recoveryStep2Form').style.display = 'none';
+            mostrarMensajeAuth("", true);
+        }
+
+        function mostrarCajaLogin() {
+            document.getElementById('recoveryBoxContainer').style.display = 'none';
+            document.getElementById('loginBoxContainer').style.display = 'block';
+            mostrarMensajeAuth("", true);
+        }
+
         // ==========================================
         // MANEJADOR DE INICIO DE SESIÓN (LOGIN)
         // ==========================================
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Evita que se recargue la página y vuelva arriba
+            e.preventDefault();
             mostrarMensajeAuth("Validando credenciales...", true);
 
             const user = document.getElementById('loginUser').value.trim();
             const pass = document.getElementById('loginPassword').value;
 
             try {
-                // Busca coincidencia exacta ya sea por roblox_user o por discord_user
                 const { data: usuarios, error } = await clientSupabase
                     .from('usuarios_mcrp')
                     .select('*')
@@ -366,27 +415,101 @@
 
                 const usuarioEncontrado = usuarios[0];
 
-                // Validación simple de contraseña
                 if (usuarioEncontrado.password === pass) {
                     mostrarMensajeAuth("¡Sesión iniciada con éxito!", true);
                     
-                    // Asignar los valores al panel del perfil
                     document.getElementById('lblRoblox').textContent = usuarioEncontrado.roblox_user || "No asignado";
                     document.getElementById('lblRobloxID').textContent = usuarioEncontrado.id || "N/A";
                     document.getElementById('lblDiscord').textContent = usuarioEncontrado.discord_user || "No asignado";
                     document.getElementById('lblUserRole').textContent = usuarioEncontrado.rango || "Civil";
 
-                    // Transición visual limpia sin salir de la sección
                     document.getElementById('authFormsBox').style.display = 'none';
                     document.getElementById('userPanelBox').style.display = 'block';
                     document.getElementById('topNavAuthBtn').textContent = "Mi Cuenta";
                 } else {
                     mostrarMensajeAuth("Error: La contraseña introducida es incorrecta.", false);
                 }
-
             } catch (err) {
                 mostrarMensajeAuth("Error al conectar con la base de datos.", false);
+            }
+        });
+
+        // ==========================================
+        // RECUPERACIÓN - PASO 1 (PEDIR CÓDIGO)
+        // ==========================================
+        document.getElementById('recoveryStep1Form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            usuarioRecoveryDiscord = document.getElementById('recDiscordUser').value.trim();
+            mostrarMensajeAuth("Comprobando existencia de la cuenta...", true);
+
+            try {
+                // Comprobar si el usuario existe en la tabla de registrados
+                const { data: verificarUsuario, error } = await clientSupabase
+                    .from('usuarios_mcrp')
+                    .select('*')
+                    .ilike('discord_user', usuarioRecoveryDiscord);
+
+                if (error) throw error;
+
+                if (!verificarUsuario || verificarUsuario.length === 0) {
+                    mostrarMensajeAuth("Error: Este usuario de Discord no está registrado en MCRP.", false);
+                    return;
+                }
+
+                // Generamos código aleatorio de 6 dígitos
+                codigoRecoveryLocal = Math.floor(100000 + Math.random() * 900000).toString();
+
+                // Lo insertamos en la tabla para que el bot de Discord lo detecte y lo mande
+                const { error: errorInsert } = await clientSupabase
+                    .from('verificaciones_pendientes')
+                    .insert([{ discord_user: usuarioRecoveryDiscord, codigo: codigoRecoveryLocal, enviado: false }]);
+
+                if (errorInsert) throw errorInsert;
+
+                // Cambiar de vista interna de recuperación
+                document.getElementById('recoveryStep1Form').style.display = 'none';
+                document.getElementById('recoveryStep2Form').style.display = 'block';
+                mostrarMensajeAuth("¡Solicitud enviada! El bot te mandará el código por Discord.", true);
+
+            } catch (err) {
+                mostrarMensajeAuth("Error al procesar la solicitud de recuperación.", false);
                 console.error(err);
+            }
+        });
+
+        // ==========================================
+        // RECUPERACIÓN - PASO 2 (VERIFICAR Y CAMBIAR)
+        // ==========================================
+        document.getElementById('recoveryStep2Form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const codigoIntroducido = document.getElementById('recCode').value.trim();
+            const nuevaPassword = document.getElementById('recNewPassword').value;
+
+            if (codigoIntroducido === codigoRecoveryLocal) {
+                mostrarMensajeAuth("Código verificado. Actualizando contraseña...", true);
+
+                try {
+                    // Hacer el UPDATE de la contraseña usando el discord_user recolectado en el paso 1
+                    const { error } = await clientSupabase
+                        .from('usuarios_mcrp')
+                        .update({ password: nuevaPassword })
+                        .ilike('discord_user', usuarioRecoveryDiscord);
+
+                    if (error) throw error;
+
+                    mostrarMensajeAuth("¡Contraseña actualizada con éxito! Ya puedes iniciar sesión.", true);
+                    
+                    // Resetear y regresar al cuadro de login original
+                    document.getElementById('recoveryStep2Form').reset();
+                    document.getElementById('recoveryStep1Form').reset();
+                    mostrarCajaLogin();
+
+                } catch (updateErr) {
+                    mostrarMensajeAuth("Error al intentar guardar la nueva contraseña.", false);
+                    console.error(updateErr);
+                }
+            } else {
+                mostrarMensajeAuth("Error: El código ingresado es incorrecto.", false);
             }
         });
 
@@ -412,7 +535,8 @@
                     return;
                 }
 
-                codigoGeneradoLocal = Math.floor(100000 + Math.random() * 900000).toString();
+                codigoGeneratedLocal = Math.floor(100000 + Math.random() * 900000).toString();
+                codigoGeneradoLocal = codigoGeneratedLocal; 
                 datosRegistroTemporal = { rbx, dsc, pass };
 
                 const { error } = await clientSupabase
@@ -427,7 +551,6 @@
                 mostrarMensajeAuth("¡Solicitud enviada! Revisa tus Mensajes Directos en Discord.", true);
             } catch (err) {
                 mostrarMensajeAuth("Error al guardar la solicitud de verificación.", false);
-                console.error(err);
             }
         });
 
@@ -455,13 +578,11 @@
 
                     mostrarMensajeAuth("¡Cuenta creada con éxito! Ya puedes iniciar sesión.", true);
                     
-                    // Reiniciar formularios para volver al login limpio
                     document.getElementById('registerStep2Form').style.display = 'none';
                     document.getElementById('registerStep1Form').style.display = 'block';
                     document.getElementById('registerStep1Form').reset();
                 } catch (saveErr) {
                     mostrarMensajeAuth("Error al crear el perfil final del usuario.", false);
-                    console.error(saveErr);
                 }
             } else {
                 mostrarMensajeAuth("Código incorrecto. Verifica el mensaje enviado por el bot.", false);
@@ -480,4 +601,4 @@
         }
     </script>
 </body>
-</html>
+</html>s
