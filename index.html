@@ -32,7 +32,7 @@
         .btn-conectar-top:hover { background: #00f2fe; color: #000; box-shadow: 0 0 25px #00f2fe; }
 
         /* HERO SECCIÓN */
-        .hero-section { position: relative; height: 500px; background: linear-gradient(135deg, #0a061a 0%, #050409 100%); display: flex; align-items: center; padding: 0 6%; padding-top: 80px; }
+        .hero-section { position: relative; height: 450px; background: linear-gradient(135deg, #0a061a 0%, #050409 100%); display: flex; align-items: center; padding: 0 6%; padding-top: 80px; }
         .hero-content { max-width: 550px; position: relative; z-index: 2; }
         .hero-content h1 { font-size: 52px; font-weight: 900; line-height: 1.1; text-transform: uppercase; margin-bottom: 20px; letter-spacing: -1px; }
         .hero-content h1 span { color: #ff007f; text-shadow: 0 0 20px rgba(255, 0, 127, 0.6); }
@@ -45,70 +45,15 @@
         .stat-info h3 { font-size: 18px; font-weight: 900; }
         .stat-info p { font-size: 11px; color: #a3a3c2; text-transform: uppercase; font-weight: 700; }
 
-        /* SECCIÓN DE TIENDA */
-        .shop-section { padding: 80px 6% 40px 6%; background: linear-gradient(180deg, #050409 0%, #0b0914 100%); }
-        .shop-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
-        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .shop-card { background: rgba(16, 13, 29, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 35px 25px; text-align: center; transition: 0.3s ease-in-out; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
-        .shop-card:hover { transform: translateY(-8px); background: rgba(22, 18, 41, 0.9); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
-        .vip-stars { font-size: 14px; margin-bottom: 10px; }
-        .bronze .vip-stars { color: #cd7f32; }
-        .silver .vip-stars { color: #c0c0c0; }
-        .gold .vip-stars { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
-        .vip-icon { font-size: 45px; margin-bottom: 20px; }
-        .bronze .vip-icon { color: #cd7f32; }
-        .silver .vip-icon { color: #c0c0c0; }
-        .gold .vip-icon { color: #ffd700; }
-        .shop-card h3 { font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
-        .vip-price { font-size: 18px; font-weight: 700; color: #00f2fe; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-        .btn-buy { width: 100%; padding: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; border-radius: 6px; border: none; color: #ffffff; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
-        .bronze .btn-buy { background: #cd7f32; }
-        .silver .btn-buy { background: #7a7a7a; }
-        .gold .btn-buy { background: #ff007f; }
-        .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.2); }
-
-        /* SECCIÓN DE FACCIONES */
-        .roles-section { padding: 60px 6% 40px 6%; }
-        .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
-        .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; }
-        .role-card:hover { transform: translateY(-5px); }
-        .role-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 15px auto; }
-        .role-card.mdpd .role-icon { color: #0066ff; background: rgba(0, 102, 255, 0.1); }
-        .role-card.bso .role-icon { color: #d4af37; background: rgba(212, 175, 55, 0.1); }
-        .role-card.mdfr .role-icon { color: #ff0033; background: rgba(255, 0, 51, 0.1); }
-        .role-card.fdot .role-icon { color: #ff9900; background: rgba(255, 153, 0, 0.1); }
-        .role-card.fbi .role-icon { color: #a020f0; background: rgba(160, 32, 240, 0.1); }
-        .role-card h4 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
-        .role-card p { font-size: 12px; color: #a3a3c2; }
-
-        /* SECCIÓN DE NORMATIVA */
-        .rules-section { padding: 60px 6% 40px 6%; }
-        .rules-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 25px; letter-spacing: 1px; border-left: 4px solid #00f2fe; padding-left: 12px; }
-        .warning-box { background: rgba(255, 0, 127, 0.1); border: 1px solid #ff007f; border-radius: 6px; padding: 15px; margin-bottom: 35px; display: flex; align-items: center; gap: 15px; }
-        .warning-box i { color: #ff007f; font-size: 24px; }
-        .warning-box p { font-size: 13px; font-weight: 700; color: #ffccd8; }
-        
-        .rules-subtitle { font-size: 18px; text-transform: uppercase; font-weight: 900; color: #00f2fe; margin: 30px 0 15px 0; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid rgba(0, 242, 254, 0.2); padding-bottom: 8px; }
-
-        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .article-card { background: rgba(14, 12, 26, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 25px; }
-        .article-card h3 { color: #ff007f; font-size: 15px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid rgba(255, 0, 127, 0.1); padding-bottom: 8px; }
-        .article-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .article-card ul li { font-size: 13px; color: #cccccc; line-height: 1.5; }
-        .article-card ul li strong { color: #00f2fe; }
-
-        /* PORTAL DE LOGIN Y REGISTRO */
-        .auth-section { padding: 60px 6% 100px 6%; background: linear-gradient(180deg, #050409 0%, #0b0914 100%); }
+        /* PORTAL DE LOGIN Y REGISTRO (AHORA MERO ARRIBA) */
+        .auth-section { padding: 40px 6% 60px 6%; background: #050409; border-bottom: 1px solid rgba(255, 255, 255, 0.02); }
         .auth-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #00f2fe; padding-left: 12px; }
         
         .auth-split-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
-        
         .auth-block-box { background: rgba(11, 9, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.03); padding: 35px 25px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); position: relative; }
         .auth-block-box h3 { font-size: 18px; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; color: #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.2); padding-bottom: 10px; text-align: center; }
         
         .single-panel-container { max-width: 550px; margin: 0 auto; }
-
         .verify-instructions { background: rgba(0, 242, 254, 0.05); border: 1px dashed rgba(0, 242, 254, 0.3); border-radius: 6px; padding: 15px; font-size: 12px; color: #b3f7ff; margin-bottom: 20px; line-height: 1.5; }
         .user-panel-info { text-align: center; }
         .user-panel-info h4 { font-size: 20px; color: #00f2fe; margin-bottom: 15px; }
@@ -132,6 +77,43 @@
         .form-status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 700; display: none; }
         .form-status.success { color: #00ff88; }
         .form-status.error { color: #ff3333; }
+
+        /* SECCIÓN DE TIENDA */
+        .shop-section { padding: 60px 6% 40px 6%; background: linear-gradient(180deg, #050409 0%, #0b0914 100%); }
+        .shop-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
+        .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .shop-card { background: rgba(16, 13, 29, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 35px 25px; text-align: center; transition: 0.3s ease-in-out; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
+        .shop-card:hover { transform: translateY(-8px); background: rgba(22, 18, 41, 0.9); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
+        .vip-stars { font-size: 14px; margin-bottom: 10px; }
+        .bronze .vip-stars { color: #cd7f32; }
+        .silver .vip-stars { color: #c0c0c0; }
+        .gold .vip-stars { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
+        .vip-icon { font-size: 45px; margin-bottom: 20px; }
+        .bronze .vip-icon { color: #cd7f32; }
+        .silver .vip-icon { color: #c0c0c0; }
+        .gold .vip-icon { color: #ffd700; }
+        .shop-card h3 { font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+        .vip-price { font-size: 18px; font-weight: 700; color: #00f2fe; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .btn-buy { width: 100%; padding: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; border-radius: 6px; border: none; color: #ffffff; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
+        .bronze .btn-buy { background: #cd7f32; }
+        .silver .btn-buy { background: #7a7a7a; }
+        .gold .btn-buy { background: #ff007f; }
+        .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+        /* SECCIÓN DE FACCIONES */
+        .roles-section { padding: 60px 6% 80px 6%; }
+        .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
+        .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; }
+        .role-card:hover { transform: translateY(-5px); }
+        .role-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 15px auto; }
+        .role-card.mdpd .role-icon { color: #0066ff; background: rgba(0, 102, 255, 0.1); }
+        .role-card.bso .role-icon { color: #d4af37; background: rgba(212, 175, 55, 0.1); }
+        .role-card.mdfr .role-icon { color: #ff0033; background: rgba(255, 0, 51, 0.1); }
+        .role-card.fdot .role-icon { color: #ff9900; background: rgba(255, 153, 0, 0.1); }
+        .role-card.fbi .role-icon { color: #a020f0; background: rgba(160, 32, 240, 0.1); }
+        .role-card h4 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+        .role-card p { font-size: 12px; color: #a3a3c2; }
     </style>
 </head>
 <body>
@@ -143,10 +125,9 @@
         <nav>
             <ul>
                 <li><a href="#" class="activo">Inicio</a></li>
+                <li><a href="#cuenta">Mi Cuenta</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#facciones">Facciones</a></li>
-                <li><a href="#normativa">Reglas</a></li>
-                <li><a href="#cuenta">Mi Cuenta</a></li>
                 <li><button onclick="irAlPortal()" class="btn-conectar-top" id="topNavAuthBtn">Ingresar</button></li>
             </ul>
         </nav>
@@ -169,89 +150,6 @@
             <div class="stat-info"><h3 id="txt-estado-convocatoria">Abiertas</h3><p>Convocatorias Staff</p></div>
         </div>
     </div>
-
-    <section class="shop-section" id="tienda">
-        <h2>Tienda Oficial - Rangos VIP</h2>
-        <div class="shop-grid">
-            <div class="shop-card bronze">
-                <div>
-                    <div class="vip-stars"><i class="fa-solid fa-star"></i></div>
-                    <div class="vip-icon"><i class="fa-solid fa-gem"></i></div>
-                    <h3>VIP Bronze</h3>
-                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 49 Robux</div>
-                </div>
-                <a href="https://www.roblox.com/es/game-pass/1853865218/VIP-BRONZE" target="_blank" class="btn-buy">Comprar VIP</a>
-            </div>
-            <div class="shop-card silver">
-                <div>
-                    <div class="vip-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <div class="vip-icon"><i class="fa-solid fa-crown"></i></div>
-                    <h3>VIP Silver</h3>
-                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 99 Robux</div>
-                </div>
-                <a href="https://www.roblox.com/es/game-pass/1853733270/VIP-SILVER" target="_blank" class="btn-buy">Comprar VIP</a>
-            </div>
-            <div class="shop-card gold">
-                <div>
-                    <div class="vip-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <div class="vip-icon"><i class="fa-solid fa-jet-fighter"></i></div>
-                    <h3>VIP Gold</h3>
-                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 199 Robux</div>
-                </div>
-                <a href="https://www.roblox.com/es/game-pass/1854243354/VIP-GOLD" target="_blank" class="btn-buy">Comprar VIP</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="roles-section" id="facciones">
-        <h2>Nuestras Facciones Oficiales</h2>
-        <div class="roles-grid">
-            <div class="role-card mdpd"><div class="role-icon"><i class="fa-solid fa-shield-halved"></i></div><h4>MDPD</h4><p>Miami-Dade Police Department</p></div>
-            <div class="role-card bso"><div class="role-icon"><i class="fa-solid fa-star-of-life"></i></div><h4>BSO</h4><p>Broward Sheriff's Office</p></div>
-            <div class="role-card mdfr"><div class="role-icon"><i class="fa-solid fa-fire-extinguisher"></i></div><h4>MDFR</h4><p>Miami-Dade Fire Rescue</p></div>
-            <div class="role-card fdot"><div class="role-icon"><i class="fa-solid fa-truck-field"></i></div><h4>FDOT</h4><p>Florida Dept. of Transportation</p></div>
-            <div class="role-card fbi"><div class="role-icon"><i class="fa-solid fa-user-secret"></i></div><h4>FBI</h4><p>Federal Bureau of Investigation</p></div>
-        </div>
-    </section>
-
-    <section class="rules-section" id="normativa">
-        <h2>Normativa del Servidor</h2>
-        <div class="warning-box">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <p>AVISO IMPORTANTE: Cualquier Información que sea Duplicada o Copiada para usos externos se aplicará un baneo permanente de nuestra comunidad.</p>
-        </div>
-
-        <div class="rules-subtitle"><i class="fa-solid fa-user-large"></i> Reglas In Character (IC)</div>
-        <div class="articles-grid">
-            <div class="article-card">
-                <h3>Bloque 1: Entorno y Vida</h3>
-                <ul>
-                    <li><strong>Art 1.</strong> Debes esperar 5 minutos si hay EMS en camino; si no hay activos, el tiempo de espera mínimo es de 3 minutos.</li>
-                    <li><strong>Art 2.</strong> Valoración de vida: Tu personaje debe reaccionar con miedo lógico ante amenazas directas de muerte.</li>
-                    <li><strong>Art 3.</strong> Conducción Realista: No se permite realizar saltos exagerados o manejar de forma absurda desobedeciendo por completo el entorno.</li>
-                </ul>
-            </div>
-            <div class="article-card">
-                <h3>Bloque 2: Acciones Criminales</h3>
-                <ul>
-                    <li><strong>Art 4.</strong> Robos Limitados: Se requiere un mínimo de oficiales de policía activos en el servidor antes de iniciar un asalto a banco o joyería.</li>
-                    <li><strong>Art 5.</strong> Zonas Seguras: Queda prohibido iniciar tiroteos o cometer crímenes en las estaciones principales o spawns de facciones legales.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="rules-subtitle"><i class="fa-solid fa-laptop-code"></i> Reglas Out of Character (OOC)</div>
-        <div class="articles-grid">
-            <div class="article-card">
-                <h3>Bloque 3: Convivencia y Conceptos</h3>
-                <ul>
-                    <li><strong>Art 6.</strong> MetaGaming (MG): Queda prohibido usar información obtenida fuera del juego (Discord, Streams) para beneficio IC de tu personaje.</li>
-                    <li><strong>Art 7.</strong> PowerGaming (PG): No se permite realizar acciones imposibles en la vida real dentro de la simulación de Roblox.</li>
-                    <li><strong>Art 8.</strong> Respeto mutuo: Todo insulto de forma directa fuera de rol a otro usuario acarreará una sanción administrativa inmediata.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
     <section class="auth-section" id="cuenta">
         <h2>Portal del Ciudadano (MCRP)</h2>
@@ -351,6 +249,50 @@
         </div>
     </section>
 
+    <section class="shop-section" id="tienda">
+        <h2>Tienda Oficial - Rangos VIP</h2>
+        <div class="shop-grid">
+            <div class="shop-card bronze">
+                <div>
+                    <div class="vip-stars"><i class="fa-solid fa-star"></i></div>
+                    <div class="vip-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>VIP Bronze</h3>
+                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 49 Robux</div>
+                </div>
+                <a href="https://www.roblox.com/es/game-pass/1853865218/VIP-BRONZE" target="_blank" class="btn-buy">Comprar VIP</a>
+            </div>
+            <div class="shop-card silver">
+                <div>
+                    <div class="vip-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="vip-icon"><i class="fa-solid fa-crown"></i></div>
+                    <h3>VIP Silver</h3>
+                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 99 Robux</div>
+                </div>
+                <a href="https://www.roblox.com/es/game-pass/1853733270/VIP-SILVER" target="_blank" class="btn-buy">Comprar VIP</a>
+            </div>
+            <div class="shop-card gold">
+                <div>
+                    <div class="vip-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="vip-icon"><i class="fa-solid fa-jet-fighter"></i></div>
+                    <h3>VIP Gold</h3>
+                    <div class="vip-price"><i class="fa-solid fa-coins"></i> 199 Robux</div>
+                </div>
+                <a href="https://www.roblox.com/es/game-pass/1854243354/VIP-GOLD" target="_blank" class="btn-buy">Comprar VIP</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="roles-section" id="facciones">
+        <h2>Nuestras Facciones Oficiales</h2>
+        <div class="roles-grid">
+            <div class="role-card mdpd"><div class="role-icon"><i class="fa-solid fa-shield-halved"></i></div><h4>MDPD</h4><p>Miami-Dade Police Department</p></div>
+            <div class="role-card bso"><div class="role-icon"><i class="fa-solid fa-star-of-life"></i></div><h4>BSO</h4><p>Broward Sheriff's Office</p></div>
+            <div class="role-card mdfr"><div class="role-icon"><i class="fa-solid fa-fire-extinguisher"></i></div><h4>MDFR</h4><p>Miami-Dade Fire Rescue</p></div>
+            <div class="role-card fdot"><div class="role-icon"><i class="fa-solid fa-truck-field"></i></div><h4>FDOT</h4><p>Florida Dept. of Transportation</p></div>
+            <div class="role-card fbi"><div class="role-icon"><i class="fa-solid fa-user-secret"></i></div><h4>FBI</h4><p>Federal Bureau of Investigation</p></div>
+        </div>
+    </section>
+
     <script>
         // === CREDENCIALES DE SUPABASE ===
         const SUPABASE_URL = "https://cjiksanxgtzdchhamqkb.supabase.co"; 
@@ -375,7 +317,6 @@
             el.style.display = "block";
         }
 
-        // CONTROL VISUAL DE RECOVERY
         function mostrarRecuperarClave() {
             document.getElementById('loginBoxContainer').style.display = 'none';
             document.getElementById('recoveryBoxContainer').style.display = 'block';
@@ -391,7 +332,7 @@
         }
 
         // ==========================================
-        // MANEJADOR DE INICIO DE SESIÓN (LOGIN)
+        // LOGIN
         // ==========================================
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -409,7 +350,7 @@
                 if (error) throw error;
 
                 if (!usuarios || usuarios.length === 0) {
-                    mostrarMensajeAuth("Error: Usuario no encontrado en el sistema.", false);
+                    mostrarMensajeAuth("Error: Usuario no encontrado.", false);
                     return;
                 }
 
@@ -427,7 +368,7 @@
                     document.getElementById('userPanelBox').style.display = 'block';
                     document.getElementById('topNavAuthBtn').textContent = "Mi Cuenta";
                 } else {
-                    mostrarMensajeAuth("Error: La contraseña introducida es incorrecta.", false);
+                    mostrarMensajeAuth("Error: Contraseña incorrecta.", false);
                 }
             } catch (err) {
                 mostrarMensajeAuth("Error al conectar con la base de datos.", false);
@@ -435,7 +376,7 @@
         });
 
         // ==========================================
-        // RECUPERACIÓN - PASO 1 (PEDIR CÓDIGO)
+        // RECUPERACIÓN - PASO 1
         // ==========================================
         document.getElementById('recoveryStep1Form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -443,7 +384,6 @@
             mostrarMensajeAuth("Comprobando existencia de la cuenta...", true);
 
             try {
-                // Comprobar si el usuario existe en la tabla de registrados
                 const { data: verificarUsuario, error } = await clientSupabase
                     .from('usuarios_mcrp')
                     .select('*')
@@ -452,33 +392,29 @@
                 if (error) throw error;
 
                 if (!verificarUsuario || verificarUsuario.length === 0) {
-                    mostrarMensajeAuth("Error: Este usuario de Discord no está registrado en MCRP.", false);
+                    mostrarMensajeAuth("Error: Este usuario de Discord no está registrado.", false);
                     return;
                 }
 
-                // Generamos código aleatorio de 6 dígitos
                 codigoRecoveryLocal = Math.floor(100000 + Math.random() * 900000).toString();
 
-                // Lo insertamos en la tabla para que el bot de Discord lo detecte y lo mande
                 const { error: errorInsert } = await clientSupabase
                     .from('verificaciones_pendientes')
                     .insert([{ discord_user: usuarioRecoveryDiscord, codigo: codigoRecoveryLocal, enviado: false }]);
 
                 if (errorInsert) throw errorInsert;
 
-                // Cambiar de vista interna de recuperación
                 document.getElementById('recoveryStep1Form').style.display = 'none';
                 document.getElementById('recoveryStep2Form').style.display = 'block';
                 mostrarMensajeAuth("¡Solicitud enviada! El bot te mandará el código por Discord.", true);
 
             } catch (err) {
-                mostrarMensajeAuth("Error al procesar la solicitud de recuperación.", false);
-                console.error(err);
+                mostrarMensajeAuth("Error al procesar la solicitud.", false);
             }
         });
 
         // ==========================================
-        // RECUPERACIÓN - PASO 2 (VERIFICAR Y CAMBIAR)
+        // RECUPERACIÓN - PASO 2
         // ==========================================
         document.getElementById('recoveryStep2Form').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -489,7 +425,6 @@
                 mostrarMensajeAuth("Código verificado. Actualizando contraseña...", true);
 
                 try {
-                    // Hacer el UPDATE de la contraseña usando el discord_user recolectado en el paso 1
                     const { error } = await clientSupabase
                         .from('usuarios_mcrp')
                         .update({ password: nuevaPassword })
@@ -498,27 +433,24 @@
                     if (error) throw error;
 
                     mostrarMensajeAuth("¡Contraseña actualizada con éxito! Ya puedes iniciar sesión.", true);
-                    
-                    // Resetear y regresar al cuadro de login original
                     document.getElementById('recoveryStep2Form').reset();
                     document.getElementById('recoveryStep1Form').reset();
                     mostrarCajaLogin();
 
                 } catch (updateErr) {
-                    mostrarMensajeAuth("Error al intentar guardar la nueva contraseña.", false);
-                    console.error(updateErr);
+                    mostrarMensajeAuth("Error al guardar la nueva contraseña.", false);
                 }
             } else {
-                mostrarMensajeAuth("Error: El código ingresado es incorrecto.", false);
+                mostrarMensajeAuth("Error: El código es incorrecto.", false);
             }
         });
 
         // ==========================================
-        // REGISTRO - PASO 1 (SOLICITAR CÓDIGO)
+        // REGISTRO - PASO 1
         // ==========================================
         document.getElementById('registerStep1Form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            mostrarMensajeAuth("Comprobando disponibilidad y generando código...", true);
+            mostrarMensajeAuth("Comprobando disponibilidad...", true);
             
             const rbx = document.getElementById('regRoblox').value.trim();
             const dsc = document.getElementById('regDiscord').value.trim();
@@ -531,12 +463,11 @@
                     .or(`roblox_user.ilike.${rbx},discord_user.ilike.${dsc}`);
 
                 if (usuarioExistente && usuarioExistente.length > 0) {
-                    mostrarMensajeAuth("Error: Este usuario ya está registrado en el sistema.", false);
+                    mostrarMensajeAuth("Error: Este usuario ya está registrado.", false);
                     return;
                 }
 
-                codigoGeneratedLocal = Math.floor(100000 + Math.random() * 900000).toString();
-                codigoGeneradoLocal = codigoGeneratedLocal; 
+                codigoGeneradoLocal = Math.floor(100000 + Math.random() * 900000).toString();
                 datosRegistroTemporal = { rbx, dsc, pass };
 
                 const { error } = await clientSupabase
@@ -548,21 +479,21 @@
                 document.getElementById('registerStep1Form').style.display = 'none';
                 document.getElementById('registerStep2Form').style.display = 'block';
                 
-                mostrarMensajeAuth("¡Solicitud enviada! Revisa tus Mensajes Directos en Discord.", true);
+                mostrarMensajeAuth("¡Solicitud enviada! Revisa tu Discord.", true);
             } catch (err) {
-                mostrarMensajeAuth("Error al guardar la solicitud de verificación.", false);
+                mostrarMensajeAuth("Error al enviar la solicitud.", false);
             }
         });
 
         // ==========================================
-        // REGISTRO - PASO 2 (VERIFICAR CÓDIGO)
+        // REGISTRO - PASO 2
         // ==========================================
         document.getElementById('registerStep2Form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const codigoIntroducido = document.getElementById('regCode').value.trim();
 
             if(codigoIntroducido === codigoGeneradoLocal) {
-                mostrarMensajeAuth("Código correcto. Guardando cuenta en el sistema...", true);
+                mostrarMensajeAuth("Código correcto. Guardando cuenta...", true);
                 
                 try {
                     const { error } = await clientSupabase
@@ -577,21 +508,17 @@
                     if (error) throw error;
 
                     mostrarMensajeAuth("¡Cuenta creada con éxito! Ya puedes iniciar sesión.", true);
-                    
                     document.getElementById('registerStep2Form').style.display = 'none';
                     document.getElementById('registerStep1Form').style.display = 'block';
                     document.getElementById('registerStep1Form').reset();
                 } catch (saveErr) {
-                    mostrarMensajeAuth("Error al crear el perfil final del usuario.", false);
+                    mostrarMensajeAuth("Error al crear el perfil final.", false);
                 }
             } else {
-                mostrarMensajeAuth("Código incorrecto. Verifica el mensaje enviado por el bot.", false);
+                mostrarMensajeAuth("Código incorrecto.", false);
             }
         });
 
-        // ==========================================
-        // FUNCIÓN DE LOGOUT
-        // ==========================================
         function cerrarSesionJugador() {
             document.getElementById('userPanelBox').style.display = 'none';
             document.getElementById('authFormsBox').style.display = 'grid';
@@ -601,4 +528,4 @@
         }
     </script>
 </body>
-</html>s
+</html>
