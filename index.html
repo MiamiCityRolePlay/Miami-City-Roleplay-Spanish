@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miami City Roleplay - MCRP</title>
     
-    <meta name="theme-color" content="#ff007f">
+    <meta name="theme-color" content="#8a2be2">
     <meta property="og:title" content="Miami City Roleplay - MCRP" />
     <meta property="og:description" content="Servidor serio con economía realista en ERLC. ¡Únete a nuestras facciones oficiales MDPD, BSO, MDFR y FDOT!" />
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1497381219753525251/1507796252287565985/e38f7a6df8f6d4a428c8c65b426e8ec2.png" />
+    <meta property="og:image" content="https://cdn.discordapp.com/icons/1497062121563750400/e38f7a6df8f6d4a428c8c65b426e8ec2.png?size=2048" />
     <meta property="og:url" content="https://discord.gg/dqVxF4jExX" />
     <meta property="og:type" content="website" />
 
@@ -23,43 +23,46 @@
         body { background-color: #050409; color: #ffffff; overflow-x: hidden; }
 
         /* BARRA DE NAVEGACIÓN */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(5, 4, 9, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 242, 254, 0.1); position: fixed; top: 0; width: 100%; z-index: 100; }
-        .logo img { height: 60px; object-fit: contain; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; background: rgba(5, 4, 9, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(138, 43, 226, 0.15); position: fixed; top: 0; width: 100%; z-index: 100; }
+        .logo img { height: 60px; width: 60px; object-fit: contain; border-radius: 50%; box-shadow: 0 0 10px rgba(138, 43, 226, 0.3); }
         nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
         nav ul li a { color: #a3a3c2; text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
-        nav ul li a:hover, nav ul li a.activo { color: #00f2fe; text-shadow: 0 0 10px #00f2fe; }
-        .btn-conectar-top { background: transparent; border: 2px solid #00f2fe; color: #ffffff; padding: 10px 22px; font-weight: 700; border-radius: 4px; text-decoration: none; text-transform: uppercase; box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); transition: 0.3s; cursor: pointer; }
-        .btn-conectar-top:hover { background: #00f2fe; color: #000; box-shadow: 0 0 25px #00f2fe; }
+        nav ul li a:hover, nav ul li a.activo { color: #bf55ec; text-shadow: 0 0 10px #bf55ec; }
+        .btn-conectar-top { background: transparent; border: 2px solid #8a2be2; color: #ffffff; padding: 10px 22px; font-weight: 700; border-radius: 4px; text-decoration: none; text-transform: uppercase; box-shadow: 0 0 15px rgba(138, 43, 226, 0.2); transition: 0.3s; cursor: pointer; }
+        .btn-conectar-top:hover { background: #8a2be2; color: #fff; box-shadow: 0 0 25px #8a2be2; }
 
         /* HERO SECCIÓN */
-        .hero-section { position: relative; height: 450px; background: linear-gradient(135deg, #0a061a 0%, #050409 100%); display: flex; align-items: center; padding: 0 6%; padding-top: 80px; }
+        .hero-section { position: relative; height: 450px; background: linear-gradient(135deg, #0f0826 0%, #050409 100%); display: flex; align-items: center; padding: 0 6%; padding-top: 80px; }
         .hero-content { max-width: 550px; position: relative; z-index: 2; }
         .hero-content h1 { font-size: 52px; font-weight: 900; line-height: 1.1; text-transform: uppercase; margin-bottom: 20px; letter-spacing: -1px; }
-        .hero-content h1 span { color: #ff007f; text-shadow: 0 0 20px rgba(255, 0, 127, 0.6); }
+        .hero-content h1 span { color: #8a2be2; text-shadow: 0 0 20px rgba(138, 43, 226, 0.6); }
         .hero-content p { color: #cccccc; font-size: 15px; line-height: 1.6; margin-bottom: 35px; }
 
         /* CONTADORES */
-        .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; padding: 0 6%; margin-top: -40px; margin-bottom: 40px; position: relative; z-index: 5; }
-        .stat-card { background: rgba(13, 11, 24, 0.95); border: 1px solid rgba(0, 242, 254, 0.1); backdrop-filter: blur(10px); border-radius: 6px; padding: 15px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); }
-        .stat-icon { font-size: 20px; color: #00f2fe; }
+        .stats-container { display: flex; justify-content: flex-start; padding: 0 6%; margin-top: -40px; margin-bottom: 40px; position: relative; z-index: 5; }
+        .stat-card { background: rgba(13, 11, 24, 0.95); border: 1px solid rgba(138, 43, 226, 0.15); backdrop-filter: blur(10px); border-radius: 6px; padding: 15px 25px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); min-width: 200px; }
+        .stat-icon { font-size: 20px; color: #bf55ec; }
         .stat-info h3 { font-size: 18px; font-weight: 900; }
         .stat-info p { font-size: 11px; color: #a3a3c2; text-transform: uppercase; font-weight: 700; }
 
-        /* PORTAL DE LOGIN Y REGISTRO (AHORA MERO ARRIBA) */
+        /* PORTAL DE LOGIN Y REGISTRO */
         .auth-section { padding: 40px 6% 60px 6%; background: #050409; border-bottom: 1px solid rgba(255, 255, 255, 0.02); }
-        .auth-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #00f2fe; padding-left: 12px; }
+        .auth-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #8a2be2; padding-left: 12px; }
         
         .auth-split-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         .auth-block-box { background: rgba(11, 9, 20, 0.9); border: 1px solid rgba(255, 255, 255, 0.03); padding: 35px 25px; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); position: relative; }
-        .auth-block-box h3 { font-size: 18px; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; color: #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.2); padding-bottom: 10px; text-align: center; }
+        .auth-block-box h3 { font-size: 18px; text-transform: uppercase; font-weight: 900; margin-bottom: 20px; color: #bf55ec; border-bottom: 1px solid rgba(138, 43, 226, 0.25); padding-bottom: 10px; text-align: center; }
         
-        .single-panel-container { max-width: 550px; margin: 0 auto; }
-        .verify-instructions { background: rgba(0, 242, 254, 0.05); border: 1px dashed rgba(0, 242, 254, 0.3); border-radius: 6px; padding: 15px; font-size: 12px; color: #b3f7ff; margin-bottom: 20px; line-height: 1.5; }
-        .user-panel-info { text-align: center; }
-        .user-panel-info h4 { font-size: 20px; color: #00f2fe; margin-bottom: 15px; }
-        .user-data-list { text-align: left; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .user-data-list p { font-size: 13px; margin-bottom: 8px; color: #cccccc; }
-        .user-data-list strong { color: #ff007f; }
+        .single-panel-container { max-width: 650px; margin: 0 auto; }
+        .verify-instructions { background: rgba(138, 43, 226, 0.05); border: 1px dashed rgba(138, 43, 226, 0.3); border-radius: 6px; padding: 15px; font-size: 12px; color: #e1bffee; margin-bottom: 20px; line-height: 1.5; }
+        
+        /* DISEÑO DE PANEL SIN FOTO Y SIN RANGO */
+        .user-panel-info h4 { font-size: 20px; color: #bf55ec; margin-bottom: 15px; text-align: center; }
+        .user-panel-layout { display: flex; justify-content: center; margin-bottom: 20px; }
+        .user-data-list { width: 100%; max-width: 450px; text-align: left; background: rgba(255,255,255,0.02); padding: 20px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.05); }
+        .user-data-list p { font-size: 14px; margin-bottom: 12px; color: #cccccc; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.02); padding-bottom: 8px; }
+        .user-data-list p:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .user-data-list strong { color: #8a2be2; }
         
         .btn-logout { width: 100%; padding: 14px; background: #ff3333; border: none; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 51, 51, 0.3); margin-top: 10px; transition: 0.3s; }
         .btn-logout:hover { filter: brightness(1.2); }
@@ -67,12 +70,12 @@
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; color: #a3a3c2; margin-bottom: 8px; letter-spacing: 0.5px; }
         .input-group input { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 6px; padding: 12px 15px; color: #ffffff; font-size: 14px; outline: none; transition: 0.3s; }
-        .input-group input:focus { border-color: #00f2fe; box-shadow: 0 0 10px rgba(0, 242, 254, 0.15); }
+        .input-group input:focus { border-color: #8a2be2; box-shadow: 0 0 10px rgba(138, 43, 226, 0.15); }
         
-        .link-forgot { display: block; text-align: right; font-size: 12px; color: #ff007f; text-decoration: none; font-weight: 700; margin-top: -10px; margin-bottom: 20px; transition: 0.2s; cursor: pointer; }
-        .link-forgot:hover { color: #00f2fe; text-shadow: 0 0 5px #00f2fe; }
+        .link-forgot { display: block; text-align: right; font-size: 12px; color: #8a2be2; text-decoration: none; font-weight: 700; margin-top: -10px; margin-bottom: 20px; transition: 0.2s; cursor: pointer; }
+        .link-forgot:hover { color: #bf55ec; text-shadow: 0 0 5px #bf55ec; }
 
-        .btn-submit { width: 100%; padding: 14px; background: #ff007f; border: none; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3); transition: 0.3s; }
+        .btn-submit { width: 100%; padding: 14px; background: #8a2be2; border: none; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 900; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3); transition: 0.3s; }
         .btn-submit:hover { transform: translateY(-2px); filter: brightness(1.2); }
         .form-status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 700; display: none; }
         .form-status.success { color: #00ff88; }
@@ -80,7 +83,7 @@
 
         /* SECCIÓN DE TIENDA */
         .shop-section { padding: 60px 6% 40px 6%; background: linear-gradient(180deg, #050409 0%, #0b0914 100%); }
-        .shop-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
+        .shop-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #8a2be2; padding-left: 12px; }
         .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .shop-card { background: rgba(16, 13, 29, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 35px 25px; text-align: center; transition: 0.3s ease-in-out; display: flex; flex-direction: column; justify-content: space-between; min-height: 320px; }
         .shop-card:hover { transform: translateY(-8px); background: rgba(22, 18, 41, 0.9); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
@@ -93,16 +96,16 @@
         .silver .vip-icon { color: #c0c0c0; }
         .gold .vip-icon { color: #ffd700; }
         .shop-card h3 { font-size: 24px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
-        .vip-price { font-size: 18px; font-weight: 700; color: #00f2fe; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .vip-price { font-size: 18px; font-weight: 700; color: #bf55ec; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-buy { width: 100%; padding: 12px; font-weight: 900; font-size: 13px; text-transform: uppercase; border-radius: 6px; border: none; color: #ffffff; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
         .bronze .btn-buy { background: #cd7f32; }
         .silver .btn-buy { background: #7a7a7a; }
-        .gold .btn-buy { background: #ff007f; }
+        .gold .btn-buy { background: #8a2be2; box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3); }
         .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
         /* SECCIÓN DE FACCIONES */
         .roles-section { padding: 60px 6% 80px 6%; }
-        .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #ff007f; padding-left: 12px; }
+        .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #8a2be2; padding-left: 12px; }
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; }
         .role-card:hover { transform: translateY(-5px); }
@@ -120,7 +123,7 @@
 
     <header>
         <div class="logo">
-            <img src="https://cdn.discordapp.com/attachments/1497381219753525251/1507796252287565985/e38f7a6df8f6d4a428c8c65b426e8ec2.png" alt="MCRP Logo">
+            <img src="https://cdn.discordapp.com/icons/1497062121563750400/e38f7a6df8f6d4a428c8c65b426e8ec2.png?size=2048" alt="MCRP Logo">
         </div>
         <nav>
             <ul>
@@ -143,11 +146,7 @@
     <div class="stats-container">
         <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
-            <div class="stat-info"><h3 id="txt-meta-miembros">1,500</h3><p>Meta de Miembros</p></div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-            <div class="stat-info"><h3 id="txt-estado-convocatoria">Abiertas</h3><p>Convocatorias Staff</p></div>
+            <div class="stat-info"><h3 id="txt-meta-miembros">200</h3><p>Meta de Miembros</p></div>
         </div>
     </div>
 
@@ -180,7 +179,7 @@
                         <label>Usuario de Discord (Sin @):</label>
                         <input type="text" id="recDiscordUser" placeholder="Ej: mi_usuario_discord" required>
                     </div>
-                    <button type="submit" class="btn-submit" style="background: #00f2fe; color: #000;">Solicitar Código de Cambio</button>
+                    <button type="submit" class="btn-submit" style="background: #8a2be2; color: #fff;">Solicitar Código de Cambio</button>
                     <span class="link-forgot" onclick="mostrarCajaLogin()" style="text-align: center; margin-top: 15px; color: #a3a3c2;">Volver al Login</span>
                 </form>
 
@@ -215,7 +214,7 @@
                         <label>Crea una Contraseña:</label>
                         <input type="password" id="regPassword" minlength="6" placeholder="Min. 6 caracteres" required>
                     </div>
-                    <button type="submit" class="btn-submit" style="background: #00f2fe; color: #000; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);">Solicitar Código</button>
+                    <button type="submit" class="btn-submit" style="background: #8a2be2; color: #fff; box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);">Solicitar Código</button>
                 </form>
 
                 <form id="registerStep2Form" style="display: none;">
@@ -234,12 +233,15 @@
         <div id="userPanelBox" style="display: none;" class="single-panel-container user-panel-info">
             <div class="auth-block-box">
                 <h4><i class="fa-solid fa-circle-check" style="color: #00ff88;"></i> Sesión Activa</h4>
-                <div class="user-data-list" style="margin-top: 15px;">
-                    <p>🤖 <strong>Usuario Roblox:</strong> <span id="lblRoblox">...</span></p>
-                    <p>🆔 <strong>ID Único:</strong> <span id="lblRobloxID">...</span></p>
-                    <p>💬 <strong>Usuario Discord:</strong> <span id="lblDiscord">...</span></p>
-                    <p>🎭 <strong>Rango / Rol:</strong> <span id="lblUserRole" style="color: #00f2fe;">Civil</span></p>
+                
+                <div class="user-panel-layout">
+                    <div class="user-data-list">
+                        <p><strong>🤖 Usuario Roblox:</strong> <span id="lblRoblox">...</span></p>
+                        <p><strong>🆔 ID Único:</strong> <span id="lblRobloxID">...</span></p>
+                        <p><strong>💬 Usuario Discord:</strong> <span id="lblDiscord">...</span></p>
+                    </div>
                 </div>
+                
                 <button onclick="cerrarSesionJugador()" class="btn-logout">Cerrar Sesión</button>
             </div>
         </div>
@@ -305,6 +307,22 @@
         let datosRegistroTemporal = {};
         let usuarioRecoveryDiscord = "";
 
+        // ==========================================
+        // PERSISTENCIA: COMPROBAR SESIÓN AL CARGAR
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            const sesionGuardada = localStorage.getItem('mcrp_sesion_usuario');
+            if (sesionGuardada) {
+                try {
+                    const usuario = JSON.parse(sesionGuardada);
+                    renderizarPanelUsuario(usuario);
+                } catch (e) {
+                    console.error("Error leyendo la sesión persistente", e);
+                    localStorage.removeItem('mcrp_sesion_usuario');
+                }
+            }
+        });
+
         function irAlPortal() {
             document.getElementById('cuenta').scrollIntoView({ behavior: 'smooth' });
         }
@@ -329,6 +347,17 @@
             document.getElementById('recoveryBoxContainer').style.display = 'none';
             document.getElementById('loginBoxContainer').style.display = 'block';
             mostrarMensajeAuth("", true);
+        }
+
+        // Muestra el panel directamente con los datos mapeados
+        function renderizarPanelUsuario(usuario) {
+            document.getElementById('lblRoblox').textContent = usuario.roblox_user || "No asignado";
+            document.getElementById('lblRobloxID').textContent = usuario.id || "N/A";
+            document.getElementById('lblDiscord').textContent = usuario.discord_user || "No asignado";
+
+            document.getElementById('authFormsBox').style.display = 'none';
+            document.getElementById('userPanelBox').style.display = 'block';
+            document.getElementById('topNavAuthBtn').textContent = "Mi Cuenta";
         }
 
         // ==========================================
@@ -359,14 +388,9 @@
                 if (usuarioEncontrado.password === pass) {
                     mostrarMensajeAuth("¡Sesión iniciada con éxito!", true);
                     
-                    document.getElementById('lblRoblox').textContent = usuarioEncontrado.roblox_user || "No asignado";
-                    document.getElementById('lblRobloxID').textContent = usuarioEncontrado.id || "N/A";
-                    document.getElementById('lblDiscord').textContent = usuarioEncontrado.discord_user || "No asignado";
-                    document.getElementById('lblUserRole').textContent = usuarioEncontrado.rango || "Civil";
-
-                    document.getElementById('authFormsBox').style.display = 'none';
-                    document.getElementById('userPanelBox').style.display = 'block';
-                    document.getElementById('topNavAuthBtn').textContent = "Mi Cuenta";
+                    localStorage.setItem('mcrp_sesion_usuario', JSON.stringify(usuarioEncontrado));
+                    
+                    renderizarPanelUsuario(usuarioEncontrado);
                 } else {
                     mostrarMensajeAuth("Error: Contraseña incorrecta.", false);
                 }
@@ -501,8 +525,7 @@
                         .insert([{ 
                             roblox_user: datosRegistroTemporal.rbx, 
                             discord_user: datosRegistroTemporal.dsc, 
-                            password: datosRegistroTemporal.pass,
-                            rango: "Civil"
+                            password: datosRegistroTemporal.pass
                         }]);
 
                     if (error) throw error;
@@ -520,6 +543,8 @@
         });
 
         function cerrarSesionJugador() {
+            localStorage.removeItem('mcrp_sesion_usuario');
+
             document.getElementById('userPanelBox').style.display = 'none';
             document.getElementById('authFormsBox').style.display = 'grid';
             document.getElementById('loginForm').reset();
