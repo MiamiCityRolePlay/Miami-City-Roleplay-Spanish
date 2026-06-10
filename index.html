@@ -104,7 +104,7 @@
         .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.2); }
 
         /* SECCIÓN DE FACCIONES */
-        .roles-section { padding: 60px 6% 80px 6%; }
+        .roles-section { padding: 60px 6% 40px 6%; }
         .roles-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #8a2be2; padding-left: 12px; }
         .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .role-card { background: linear-gradient(145deg, rgba(18, 15, 32, 0.9), rgba(10, 8, 20, 0.9)); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 20px; text-align: center; transition: 0.3s; }
@@ -117,6 +117,19 @@
         .role-card.fbi .role-icon { color: #a020f0; background: rgba(160, 32, 240, 0.1); }
         .role-card h4 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
         .role-card p { font-size: 12px; color: #a3a3c2; }
+
+        /* SECCIÓN DE GALERÍA */
+        .gallery-section { padding: 60px 6% 80px 6%; background: linear-gradient(180deg, #0b0914 0%, #050409 100%); }
+        .gallery-section h2 { font-size: 22px; text-transform: uppercase; font-weight: 900; margin-bottom: 35px; letter-spacing: 1px; border-left: 4px solid #8a2be2; padding-left: 12px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .gallery-item { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(138, 43, 226, 0.2); box-shadow: 0 8px 20px rgba(0,0,0,0.5); aspect-ratio: 16 / 9; transition: 0.4s ease-in-out; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(to top, rgba(5, 4, 9, 0.95) 0%, rgba(5, 4, 9, 0.4) 70%, transparent 100%); transform: translateY(100%); transition: 0.4s ease-in-out; display: flex; flex-direction: column; justify-content: flex-end; }
+        .gallery-overlay h3 { font-size: 16px; font-weight: 900; color: #bf55ec; text-transform: uppercase; margin-bottom: 4px; }
+        .gallery-overlay p { font-size: 12px; color: #cccccc; }
+        .gallery-item:hover { transform: translateY(-5px); border-color: #bf55ec; box-shadow: 0 12px 25px rgba(138, 43, 226, 0.2); }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -131,6 +144,7 @@
                 <li><a href="#cuenta">Mi Cuenta</a></li>
                 <li><a href="#tienda">Tienda</a></li>
                 <li><a href="#facciones">Facciones</a></li>
+                <li><a href="#galeria">Galería</a></li>
                 <li><button onclick="irAlPortal()" class="btn-conectar-top" id="topNavAuthBtn">Ingresar</button></li>
             </ul>
         </nav>
@@ -292,6 +306,54 @@
             <div class="role-card mdfr"><div class="role-icon"><i class="fa-solid fa-fire-extinguisher"></i></div><h4>MDFR</h4><p>Miami-Dade Fire Rescue</p></div>
             <div class="role-card fdot"><div class="role-icon"><i class="fa-solid fa-truck-field"></i></div><h4>FDOT</h4><p>Florida Dept. of Transportation</p></div>
             <div class="role-card fbi"><div class="role-icon"><i class="fa-solid fa-user-secret"></i></div><h4>FBI</h4><p>Federal Bureau of Investigation</p></div>
+        </div>
+    </section>
+
+    <section class="gallery-section" id="galeria">
+        <h2>Galería del Servidor</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://cdn.discordapp.com/attachments/1459701596358180984/1514102878883807393/image.png?ex=6a2a25b0&is=6a28d430&hm=4a7beb99170af34e54d4780bd544cbf7b02bfa473d6fbe6806c11596664c02ab&" alt="Ambulancia MCRP">
+                <div class="gallery-overlay">
+                    <h3>Servicios de Emergencia</h3>
+                    <p>Unidad de Soporte Vital lista para responder al llamado de la comunidad de Miami.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://cdn.discordapp.com/attachments/1459701596358180984/1514102878485086319/Captura_de_pantalla_2026-05-02_001458.png?ex=6a2a25b0&is=6a28d430&hm=0c69a5297e794e746247bfc5bfea4e7a8d067e9305606ac9903ab1489da89d93&" alt="State Trooper MCRP">
+                <div class="gallery-overlay">
+                    <h3>State Trooper</h3>
+                    <p>Vigilancia y control vial constante por parte de las fuerzas del orden estatales.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://cdn.discordapp.com/attachments/1459701596358180984/1514102878074179755/image-1.png?ex=6a2a25b0&is=6a28d430&hm=7596655d39adcae2d9599e8517584d704db37f96eba5c21cdcf50d4af0b49feb&" alt="FDOT MCRP">
+                <div class="gallery-overlay">
+                    <h3>Departamento de Transporte (FDOT)</h3>
+                    <p>Mantenimiento vial y asistencia en carreteras para garantizar la fluidez del tránsito.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://cdn.discordapp.com/attachments/1408978229934559302/1512557595578204211/eceaa9ef-41ed-4eec-9c3c-3e4990a267eb.png?ex=6a29cc88&is=6a287b08&hm=74dfbc49d90906528e2af02eabb23fd0eb40abb0d86d292ac1f29fe839b710ff" alt="Bomberos y Avion MCRP">
+                <div class="gallery-overlay">
+                    <h3>Rescate Aéreo e Incendios</h3>
+                    <p>Simulacro y atención inmediata ante accidentes de gran escala.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://cdn.discordapp.com/attachments/1408978229934559302/1512557517073420490/6e35c999-026e-44ba-808e-ef9500beb58c.png?ex=6a29cc76&is=6a287af6&hm=726fa1ad9f178e4b9699d1247c2c004a208cfa6712b67657cd665f8de0dfc2c9" alt="State Trooper Control MCRP">
+                <div class="gallery-overlay">
+                    <h3>Control de Tráfico</h3>
+                    <p>Unidades de la State Trooper asegurando el perímetro en las autopistas principales.</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://cdn.discordapp.com/attachments/1408978229934559302/1512557411511173181/54b460ac-e842-4b12-b060-2b396c414a1d.png?ex=6a29cc5c&is=6a287adc&hm=40f9b8fb1f0945ca32aa9bc2104891f1eb40f609ce319ce76e6d7b4b5a7ba1b3" alt="Policia Parada MCRP">
+                <div class="gallery-overlay">
+                    <h3>Intervención Policial</h3>
+                    <p>Operativos nocturnos y detenciones vehiculares para resguardar la seguridad ciudadana.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -531,26 +593,16 @@
                     if (error) throw error;
 
                     mostrarMensajeAuth("¡Cuenta creada con éxito! Ya puedes iniciar sesión.", true);
-                    document.getElementById('registerStep2Form').style.display = 'none';
-                    document.getElementById('registerStep1Form').style.display = 'block';
+                    document.getElementById('registerStep2Form').reset();
                     document.getElementById('registerStep1Form').reset();
-                } catch (saveErr) {
-                    mostrarMensajeAuth("Error al crear el perfil final.", false);
+                    mostrarCajaLogin();
+                } catch (insertErr) {
+                    mostrarMensajeAuth("Error al guardar el nuevo usuario.", false);
                 }
             } else {
-                mostrarMensajeAuth("Código incorrecto.", false);
+                mostrarMensajeAuth("Error: El código es incorrecto.", false);
             }
         });
-
-        function cerrarSesionJugador() {
-            localStorage.removeItem('mcrp_sesion_usuario');
-
-            document.getElementById('userPanelBox').style.display = 'none';
-            document.getElementById('authFormsBox').style.display = 'grid';
-            document.getElementById('loginForm').reset();
-            document.getElementById('topNavAuthBtn').textContent = "Ingresar";
-            mostrarMensajeAuth("Sesión cerrada.", true);
-        }
     </script>
 </body>
 </html>
