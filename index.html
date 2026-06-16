@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+ 
     <style>
         * {
             margin: 0;
@@ -269,6 +269,17 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        /* Estilos personalizados para las etiquetas de verificación */
+        .role-badge.status-verificado {
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+        .role-badge.status-no-verificado {
+            background: rgba(255, 51, 51, 0.15);
+            border: 1px solid #ff3333;
+            color: #ff3333;
+        }
         
         .btn-logout {
             width: 100%;
@@ -473,7 +484,7 @@
         }
         .gold .btn-buy {
             background: #8a2be2;
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+            box-shadow: 4px 12px rgba(138, 43, 226, 0.3);
         }
         .btn-buy:hover {
             transform: translateY(-2px);
@@ -740,7 +751,7 @@
                         <p><strong>🤖 Usuario Roblox:</strong> <span id="lblRoblox">...</span></p>
                         <p><strong>🆔 ID Único:</strong> <span id="lblRobloxID">...</span></p>
                         <p><strong>💬 Usuario Discord:</strong> <span id="lblDiscord">...</span></p>
-                        <p><strong>🛡️ Rango / Roles:</strong> <span id="lblRoles" class="role-badge">Cargando...</span></p>
+                        <p><strong>🛡️ Estado de Verificación:</strong> <span id="lblRoles" class="role-badge">Cargando...</span></p>
                     </div>
                 </div>
                 <button onclick="cerrarSesionJugador()" class="btn-logout">Cerrar Sesión</button>
@@ -883,11 +894,30 @@
             mostrarMensajeAuth("", true);
         }
 
+        // ==========================================
+        // FUNCIÓN MODIFICADA PARA DETECTAR LAS IDS DE ROLES
+        // ==========================================
         function renderizarPanelUsuario(usuario) {
             document.getElementById('lblRoblox').textContent = usuario.roblox_user || "No asignado";
             document.getElementById('lblRobloxID').textContent = usuario.id || "N/A";
             document.getElementById('lblDiscord').textContent = usuario.discord_user || "No asignado";
-            document.getElementById('lblRoles').textContent = usuario.roles || "Ciudadano";
+            
+            const badgeRoles = document.getElementById('lblRoles');
+            const valorRolBaseDatos = String(usuario.roles || "").trim();
+
+            // Reseteamos las clases extras del diseño para evitar conflictos
+            badgeRoles.className = "role-badge";
+            if (valorRolBaseDatos.includes("1497836906723938314")) {
+                badgeRoles.textContent = "No verificado";
+                badgeRoles.classList.add("status-no-verificado");
+            } else if (valorRolBaseDatos.includes("1497836904903741470")) {
+                badgeRoles.textContent = "Verificado";
+                badgeRoles.classList.add("status-verificado");
+            } else {
+                // Por si tiene otro rango que no sean esos dos (ej: "Ciudadano", "Admin")
+                badgeRoles.textContent = valorRolBaseDatos || "Sin Rol";
+            }
+
             document.getElementById('authFormsBox').style.display = 'none';
             document.getElementById('userPanelBox').style.display = 'block';
             document.getElementById('topNavAuthBtn').textContent = "Mi Cuenta";
@@ -931,7 +961,8 @@
                 }
 
                 if (!rbxData || rbxData.length === 0) {
-                    mostrarMensajeAuth("Error: Usuario no encontrado en el sistema.", false);
+                    text_status = "Error: Usuario no encontrado en el sistema.";
+                    mostrarMensajeAuth(text_status, false);
                     return;
                 }
 
@@ -974,6 +1005,7 @@
                     .from('usuarios_mcrp')
                     .select('roblox_user')
                     .eq('roblox_user', rbx);
+
                 if (checkRbx && checkRbx.length > 0) {
                     mostrarMensajeAuth("Error: Este usuario de Roblox ya está registrado.", false);
                     return;
@@ -983,6 +1015,7 @@
                     .from('usuarios_mcrp')
                     .select('discord_user')
                     .eq('discord_user', dsc);
+
                 if (checkDsc && checkDsc.length > 0) {
                     mostrarMensajeAuth("Error: Este Discord ya está registrado.", false);
                     return;
@@ -994,6 +1027,7 @@
                 const { error } = await clientSupabase
                     .from('verificaciones_pendientes')
                     .insert([{ discord_user: dsc, codigo: codigoGeneradoLocal, enviado: false }]);
+
                 if(error) throw error;
 
                 document.getElementById('registerStep1Form').style.display = 'none';
@@ -1022,9 +1056,10 @@
                             roblox_user: datosRegistroTemporal.rbx,
                             discord_user: datosRegistroTemporal.dsc, 
                             password: datosRegistroTemporal.pass,
-                            roles: 'Ciudadano'
+                            roles: '1497836906723938314' // Se registra inicialmente con la ID del rol no verificado
                         }])
                         .select();
+
                     if (error) throw error;
 
                     mostrarMensajeAuth("¡Cuenta registrada con éxito!", true);
@@ -1062,6 +1097,7 @@
                     .from('usuarios_mcrp')
                     .select('*')
                     .eq('discord_user', usuarioRecoveryDiscord);
+
                 if (!usuarios || usuarios.length === 0) {
                     mostrarMensajeAuth("Error: Este usuario de Discord no está registrado.", false);
                     return;
@@ -1071,6 +1107,7 @@
                 const { error: errorInsert } = await clientSupabase
                     .from('verificaciones_pendientes')
                     .insert([{ discord_user: usuarioRecoveryDiscord, codigo: codigoRecoveryLocal, enviado: false }]);
+
                 if (errorInsert) throw errorInsert;
 
                 document.getElementById('recoveryStep1Form').style.display = 'none';
